@@ -56,20 +56,25 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* 상세일정 썸네일 — PC에서 가로 늘어짐 방지 */
+        /* 상세일정 썸네일 */
+        .schedule-media { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem; }
+        @media (min-width: 768px) {
+            .schedule-media { flex-direction: row; align-items: flex-start; gap: 1rem; }
+            .schedule-media .schedule-desc { flex: 1; min-width: 0; }
+        }
         .schedule-thumb {
             display: block;
-            margin-top: 0.625rem;
             width: 100%;
-            max-width: 11rem;
+            max-width: 10.5rem;
             aspect-ratio: 4 / 3;
             object-fit: cover;
             border-radius: 0.75rem;
             border: 1px solid #e2e8f0;
             box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+            flex-shrink: 0;
         }
         @media (min-width: 768px) {
-            .schedule-thumb { max-width: 13rem; }
+            .schedule-thumb { max-width: 11.5rem; }
         }
 
         /* 비상연락 통일 카드 */
@@ -150,13 +155,7 @@
                     <a href="#contact" class="px-3 py-2 font-bold text-red-600 rounded-lg">비상연락</a>
                 </div>
             </div>
-            <div class="flex items-center gap-2 shrink-0">
-                <button onclick="printSchedule()" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg border border-slate-200 transition-colors" title="A4 일정표 1장 인쇄">
-                    <i class="fa-solid fa-print"></i> A4 일정표
-                </button>
-                <button onclick="printSchedule()" class="sm:hidden p-2 text-slate-500 hover:text-blue-600" title="A4 일정표 인쇄"><i class="fa-solid fa-print text-lg"></i></button>
-                <button onclick="shareLink()" class="p-2 text-slate-500 hover:text-blue-600" title="공유"><i class="fa-solid fa-share-nodes text-xl"></i></button>
-            </div>
+            <button onclick="shareLink()" class="shrink-0 p-2 text-slate-500 hover:text-blue-600" title="공유"><i class="fa-solid fa-share-nodes text-xl"></i></button>
         </nav>
     </header>
 
@@ -249,7 +248,12 @@
         <section id="schedule" class="py-16 bg-slate-50 border-t border-slate-200">
             <div class="container mx-auto px-4 max-w-6xl">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl font-bold text-slate-800">상세 일정표</h2>
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <h2 class="text-3xl font-bold text-slate-800">상세 일정표</h2>
+                        <button onclick="printSchedule()" class="no-print shrink-0 flex items-center justify-center gap-2 px-4 py-2 bg-[#004098] hover:bg-blue-800 text-white text-sm font-bold rounded-xl shadow-md transition-colors" title="A4 용지 1장 일정표 인쇄">
+                            <i class="fa-solid fa-print"></i> 일정표 인쇄하기
+                        </button>
+                    </div>
                     <p class="text-sm text-slate-500 mt-2">함백중학교 담당 일정 반영 · 세부 시간은 현지 조율 후 확정</p>
                 </div>
 
@@ -273,12 +277,15 @@
                             <div class="relative"><div class="timeline-dot bg-slate-400 ring-slate-100"></div><h4 class="font-bold">07:30 함백중학교(신동) 출발</h4><p class="text-sm text-slate-500 mt-1">전용버스 탑승 · 출석 및 안전점검</p></div>
                             <div class="relative"><div class="timeline-dot bg-green-500 ring-green-100"></div><h4 class="font-bold">10:30~10:50 휴게소 휴식</h4></div>
                             <div class="relative"><div class="timeline-dot bg-orange-500 ring-orange-100"></div><h4 class="font-bold">12:00~13:00 중식 — 낚지전골</h4><p class="text-sm text-slate-500 mt-1">태종대 인근 도착 후 식사</p></div>
-                            <div class="relative"><div class="timeline-dot bg-blue-600 ring-blue-100"></div><h4 class="font-bold">13:00~15:00 태종대 관광 (꼬마열차)</h4><p class="text-sm text-slate-500 mt-1">절벽과 바다가 어우러진 부산 대표 명소 · 다누비 꼬마열차 탑승</p>
-                                <img src="https://www.telltrip.com/wp-content/uploads/2025/02/Busan-Korea-tourist-attractions1.jpg" alt="태종대" class="schedule-thumb"></div>
-                            <div class="relative"><div class="timeline-dot bg-cyan-500 ring-cyan-100"></div><h4 class="font-bold">15:30~17:00 송도 해상 케이블카</h4><p class="text-sm text-slate-500 mt-1">바다 위를 가로지르는 케이블카 체험 (용궁 구름다리 포함 가능)</p>
-                                <img src="https://busanaircruise.co.kr/images/contents/attraction02.jpg" alt="송도 케이블카" class="schedule-thumb"></div>
-                            <div class="relative"><div class="timeline-dot bg-red-500 ring-red-100"></div><h4 class="font-bold">18:00~19:30 석식 — 쿠우쿠우 뷔페</h4><p class="text-sm text-slate-500 mt-1">스시·샐러드 뷔페 (다이닝원 리브랜딩)</p>
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyNDA4MjVfMTQ3/MDAxNzI0NTEyMzIwMjY0.1I4JUAb4eWebSWdNt0hB6iZ1L5QzImB61A0fg4_xce4g.Ja9-vILhLeCtw10NrUqAWw0FUVK6Uo2lqh8ibla8724g.JPEG/%EA%B2%BD%EC%84%B1%EB%8C%80_%EC%BF%A0%EC%9A%B0%EC%BF%A0%EC%9A%B0-22.jpg?type=w400" alt="쿠우쿠우" class="schedule-thumb"></div>
+                            <div class="relative"><div class="timeline-dot bg-blue-600 ring-blue-100"></div>
+                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">13:00~15:00 태종대 관광 (꼬마열차)</h4><p class="text-sm text-slate-500 mt-1">절벽과 바다가 어우러진 부산 대표 명소 · 다누비 꼬마열차 탑승</p></div>
+                                <img src="https://www.telltrip.com/wp-content/uploads/2025/02/Busan-Korea-tourist-attractions1.jpg" alt="태종대" class="schedule-thumb"></div></div>
+                            <div class="relative"><div class="timeline-dot bg-cyan-500 ring-cyan-100"></div>
+                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">15:30~17:00 송도 해상 케이블카</h4><p class="text-sm text-slate-500 mt-1">바다 위를 가로지르는 케이블카 체험 (용궁 구름다리 포함 가능)</p></div>
+                                <img src="https://busanaircruise.co.kr/images/contents/attraction02.jpg" alt="송도 케이블카" class="schedule-thumb"></div></div>
+                            <div class="relative"><div class="timeline-dot bg-red-500 ring-red-100"></div>
+                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">18:00~19:30 석식 — 쿠우쿠우 뷔페</h4><p class="text-sm text-slate-500 mt-1">스시·샐러드 뷔페 (다이닝원 리브랜딩)</p></div>
+                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyNDA4MjVfMTQ3/MDAxNzI0NTEyMzIwMjY0.1I4JUAb4eWebSWdNt0hB6iZ1L5QzImB61A0fg4_xce4g.Ja9-vILhLeCtw10NrUqAWw0FUVK6Uo2lqh8ibla8724g.JPEG/%EA%B2%BD%EC%84%B1%EB%8C%80_%EC%BF%A0%EC%9A%B0%EC%BF%A0%EC%9A%B0-22.jpg?type=w400" alt="쿠우쿠우" class="schedule-thumb"></div></div>
                             <div class="relative"><div class="timeline-dot bg-indigo-600 ring-indigo-100"></div><h4 class="font-bold">20:00 그린핀베이 호텔 체크인 · 층별 안전점호</h4><p class="text-sm text-slate-500 mt-1">남포동·국제시장 도보권 · 2인실 9실 + 3인실 1실</p></div>
                             <div class="relative"><div class="timeline-dot bg-slate-800 ring-slate-200"></div><h4 class="font-bold">21:00~22:00 자유시간 및 취침</h4></div>
                         </div>
@@ -299,10 +306,12 @@
                             <div class="relative"><div class="timeline-dot bg-indigo-600 ring-indigo-100"></div><h4 class="font-bold">09:30~11:00 경주국립박물관</h4><p class="text-sm text-slate-500 mt-1">신라 문화재 전시 관람 · 학습 활동</p></div>
                             <div class="relative"><div class="timeline-dot bg-green-500 ring-green-100"></div><h4 class="font-bold">11:30~12:30 중식 — 쌈밥정식</h4></div>
                             <div class="relative"><div class="timeline-dot bg-amber-500 ring-amber-100"></div><h4 class="font-bold">13:00~13:45 대릉원</h4><p class="text-sm text-slate-500 mt-1">신라 왕릉과 천마총이 있는 역사 공원</p></div>
-                            <div class="relative"><div class="timeline-dot bg-pink-500 ring-pink-100"></div><h4 class="font-bold">14:00~16:00 경리단길 자유시간</h4><p class="text-sm text-slate-500 mt-1">경주 시내 거리 산책 · 간식·기념품 · 조별 활동 (여유 있게 운영)</p>
-                                <img src="https://media.triple.guide/triple-cms/c_limit%2Cf_auto%2Ch_1024%2Cw_1024/245e13ad-277a-4902-bfcd-84b577d841f4.jpeg" alt="경주 시내" class="schedule-thumb"></div>
-                            <div class="relative"><div class="timeline-dot bg-indigo-500 ring-indigo-100"></div><h4 class="font-bold">16:30~17:30 동궁과 월지</h4><p class="text-sm text-slate-500 mt-1">라마다 호텔·시내권 인근 · 신라 왕궁 연못 야경 산책 (불국사 대체, 이동 효율 우선)</p>
-                                <img src="https://www.gyeongju.go.kr/portal/resources/images/contents/cont_0103_img01.jpg" alt="동궁과 월지" class="schedule-thumb" onerror="this.src='https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800'"></div>
+                            <div class="relative"><div class="timeline-dot bg-pink-500 ring-pink-100"></div>
+                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">14:00~16:00 경리단길 자유시간</h4><p class="text-sm text-slate-500 mt-1">경주 황리단길 한옥 거리 산책 · 간식·기념품 · 조별 활동</p></div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Hwangnidan-gil_01.jpg/640px-Hwangnidan-gil_01.jpg" alt="경주 황리단길" class="schedule-thumb"></div></div>
+                            <div class="relative"><div class="timeline-dot bg-indigo-500 ring-indigo-100"></div>
+                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">16:30~17:30 동궁과 월지</h4><p class="text-sm text-slate-500 mt-1">라마다 호텔·시내권 인근 · 신라 왕궁 연못 야경 산책</p></div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Donggung_Palace_and_Wolji_Pond%2C_Night_view.jpg/640px-Donggung_Palace_and_Wolji_Pond%2C_Night_view.jpg" alt="동궁과 월지 야경" class="schedule-thumb"></div></div>
                             <div class="relative"><div class="timeline-dot bg-red-500 ring-red-100"></div><h4 class="font-bold">18:30 석식 — 오리구이</h4></div>
                             <div class="relative"><div class="timeline-dot bg-blue-600 ring-blue-100"></div><h4 class="font-bold">19:30 경주 라마다 호텔 체크인</h4></div>
                             <div class="relative"><div class="timeline-dot bg-slate-800 ring-slate-200"></div><h4 class="font-bold">20:30 취침 준비</h4></div>
@@ -320,8 +329,9 @@
                         </div>
                         <div class="relative border-l-2 border-slate-300 ml-4 pl-6 space-y-6">
                             <div class="relative"><div class="timeline-dot bg-slate-400 ring-slate-100"></div><h4 class="font-bold">07:30 조식 · 체크아웃 · 짐 적재</h4></div>
-                            <div class="relative"><div class="timeline-dot bg-pink-600 ring-pink-100"></div><h4 class="font-bold">08:30~11:30 경주월드</h4><p class="text-sm text-slate-500 mt-1">놀이기구 자유이용 · 단체 패키지 입장</p>
-                                <img src="https://www.gyeongjuworld.com/assets/images/main/visual01.jpg" alt="경주월드" class="schedule-thumb" onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0cbc0b0d4c0?w=800'"></div>
+                            <div class="relative"><div class="timeline-dot bg-pink-600 ring-pink-100"></div>
+                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">08:30~11:30 경주월드</h4><p class="text-sm text-slate-500 mt-1">놀이기구 자유이용 · 드라켄 등 인기 어트랙션</p></div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Entrance_of_Gyeongju_World_and_Draken.jpg/640px-Entrance_of_Gyeongju_World_and_Draken.jpg" alt="경주월드 드라켄" class="schedule-thumb"></div></div>
                             <div class="relative"><div class="timeline-dot bg-orange-500 ring-orange-100"></div><h4 class="font-bold">12:00~13:00 중식 — 돈까스</h4></div>
                             <div class="relative"><div class="timeline-dot bg-slate-600 ring-slate-100"></div><h4 class="font-bold">13:30 함백중 방향 출발</h4><p class="text-sm text-slate-500 mt-1">휴게소 1~2회 정차</p></div>
                             <div class="relative"><div class="timeline-dot bg-green-600 ring-green-100"></div><h4 class="font-bold">18:00~18:30 함백중학교 도착 · 해산</h4></div>
