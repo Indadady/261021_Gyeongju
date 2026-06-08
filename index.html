@@ -92,44 +92,51 @@
 
         @media screen { #print-area { display: none !important; } }
         @media print {
-            @page { size: A4 portrait; margin: 7mm 8mm; }
+            @page { size: A4 portrait; margin: 5mm 6mm; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             html, body { background: white !important; color: black !important; height: auto !important; overflow: visible !important; }
             header, footer, section:not(#print-area), .no-print, #toast, #custom-confirm { display: none !important; }
             main, body { padding: 0 !important; margin: 0 !important; width: 100% !important; background: white !important; }
             #print-area {
-                display: block !important; width: 100%; max-height: 281mm;
+                display: flex !important; flex-direction: column;
+                width: 100%; min-height: 286mm; max-height: 286mm;
+                box-sizing: border-box;
                 page-break-after: avoid; page-break-inside: avoid;
             }
-            .print-header-top { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 6px; margin-bottom: 8px; }
-            .print-header-top img { height: 28px; }
-            .print-doc-no { font-size: 9px; color: #555; }
-            .print-title { text-align: center; font-size: 15px; font-weight: bold; margin-bottom: 8px; line-height: 1.3; }
-            .print-overview { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; background-color: #f8fafc !important; border: 1px solid #94a3b8 !important; border-radius: 4px; padding: 6px 10px; margin-bottom: 8px; font-size: 9.5px; }
+            .print-header-top { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 5px; margin-bottom: 6px; flex-shrink: 0; }
+            .print-header-top img { height: 30px; }
+            .print-doc-no { font-size: 9.5px; color: #555; }
+            .print-title { text-align: center; font-size: 17px; font-weight: bold; margin-bottom: 6px; line-height: 1.35; flex-shrink: 0; }
+            .print-subtitle { text-align: center; font-size: 10px; color: #64748b; margin: -2px 0 6px 0; flex-shrink: 0; }
+            .print-overview { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; background-color: #f8fafc !important; border: 1px solid #94a3b8 !important; border-radius: 4px; padding: 7px 12px; margin-bottom: 7px; font-size: 10.5px; flex-shrink: 0; }
             .print-overview .label { font-weight: bold; color: #004098; margin-right: 4px; }
-            .tm-table { width: 100%; border-collapse: collapse; font-size: 8.5px; table-layout: fixed; border: 1.5px solid #1e293b !important; }
-            .tm-table th { border: 1px solid #1e293b !important; background-color: #f8fafc !important; font-weight: bold; text-align: center; padding: 4px 3px !important; font-size: 8.5px; }
-            .tm-table td { border: 1px solid #1e293b !important; padding: 4px 5px !important; vertical-align: top; word-break: keep-all; line-height: 1.25; }
-            .tm-col-date { width: 11%; text-align: center; font-weight: 700; background-color: #f8fafc !important; vertical-align: middle; font-size: 8px; }
-            .tm-col-desc { width: 75%; }
-            .tm-col-meal { width: 14%; text-align: center; vertical-align: middle; }
-            tr, thead, tbody { page-break-inside: avoid; break-inside: avoid; }
+            .print-table-wrap { flex: 1; display: flex; min-height: 0; margin-bottom: 6px; }
+            .tm-table { width: 100%; height: 100%; border-collapse: collapse; font-size: 10px; table-layout: fixed; border: 1.5px solid #1e293b !important; }
+            .tm-table thead { display: table-header-group; }
+            .tm-table th { border: 1px solid #1e293b !important; background-color: #f8fafc !important; font-weight: bold; text-align: center; padding: 6px 4px !important; font-size: 10.5px; }
+            .tm-table td { border: 1px solid #1e293b !important; padding: 8px 7px !important; vertical-align: top; word-break: keep-all; line-height: 1.35; font-size: 10px; }
+            .tm-table tbody { height: 100%; }
+            .tm-table tbody tr { height: 33.33%; page-break-inside: avoid; break-inside: avoid; }
+            .tm-col-date { width: 13%; text-align: center; font-weight: 700; background-color: #f8fafc !important; vertical-align: middle; font-size: 9.5px; line-height: 1.4; }
+            .tm-col-desc { width: 70%; }
+            .tm-col-meal { width: 17%; text-align: center; vertical-align: middle; }
             .tm-day-divider td { border-top: 1.5px solid #1e293b !important; }
-            .tm-time-flow { font-size: 8.5px !important; margin-bottom: 2px !important; font-weight: bold; }
+            .tm-time-flow { font-size: 10px !important; margin-bottom: 4px !important; font-weight: bold; }
             .tm-time-tag { color: #004098; margin-right: 4px; }
             .tm-highlight { font-weight: 700; color: #000; }
-            .tm-desc-list { list-style: none; margin: 2px 0 !important; padding-left: 4px; }
-            .tm-desc-list li { position: relative; padding-left: 10px; margin-bottom: 1px !important; line-height: 1.2; font-size: 8.5px; }
-            .tm-desc-list li::before { content: '■'; font-size: 6px; position: absolute; left: 0; top: 2px; color: #004098; }
-            .tm-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 3px 0 2px 0; }
-            .tm-hotel-info { font-size: 8px !important; font-weight: bold; }
-            .tm-meal-wrapper { display: flex; flex-direction: column; gap: 3px; justify-content: center; height: 100%; text-align: left; padding-left: 3px; }
-            .tm-meal-simple { display: flex; align-items: flex-start; font-size: 8px !important; line-height: 1.15; }
-            .tm-meal-simple strong { color: #004098; margin-right: 3px; width: 14px; flex-shrink: 0; }
-            .print-contacts { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 8px; padding: 6px 8px; background: #f8fafc !important; border: 1px solid #cbd5e1 !important; border-radius: 4px; font-size: 8.5px; }
+            .tm-desc-list { list-style: none; margin: 3px 0 !important; padding-left: 4px; }
+            .tm-desc-list li { position: relative; padding-left: 11px; margin-bottom: 3px !important; line-height: 1.35; font-size: 10px; }
+            .tm-desc-list li::before { content: '■'; font-size: 7px; position: absolute; left: 0; top: 3px; color: #004098; }
+            .tm-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 5px 0 3px 0; }
+            .tm-hotel-info { font-size: 9.5px !important; font-weight: bold; }
+            .tm-meal-wrapper { display: flex; flex-direction: column; gap: 5px; justify-content: center; height: 100%; text-align: left; padding-left: 4px; }
+            .tm-meal-simple { display: flex; align-items: flex-start; font-size: 9.5px !important; line-height: 1.3; }
+            .tm-meal-simple strong { color: #004098; margin-right: 4px; width: 16px; flex-shrink: 0; }
+            .print-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; padding: 7px 10px; background: #f8fafc !important; border: 1px solid #cbd5e1 !important; border-radius: 4px; font-size: 10px; flex-shrink: 0; }
             .print-contacts span { white-space: nowrap; }
             .print-contacts .pc-role { font-weight: 700; color: #004098; margin-right: 3px; }
-            .print-footer-area { margin-top: 6px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 8px; border-top: 1px solid #ccc; padding-top: 5px; color: #555; }
+            .print-disclaimer { margin-top: 5px; padding: 6px 10px; background: #fffbeb !important; border: 1px solid #fcd34d !important; border-radius: 4px; font-size: 9.5px; color: #92400e; text-align: center; line-height: 1.4; flex-shrink: 0; }
+            .print-footer-area { margin-top: 5px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 9px; border-top: 1px solid #ccc; padding-top: 5px; color: #555; flex-shrink: 0; }
         }
     </style>
 </head>
@@ -487,12 +494,14 @@
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="투어메이커">
             <div class="print-doc-no">문서번호: TM-261014-HBMS</div>
         </div>
-        <div class="print-title">함백중학교 역사문화 탐방 2박3일 수학여행 확정 일정</div>
+        <div class="print-title">함백중학교 역사문화 탐방 2박3일 수학여행 예정 일정표</div>
+        <p class="print-subtitle">※ 현재 초안 단계 · 세부 시간·식당은 현지 조율 후 확정</p>
         <div class="print-overview">
             <div><span class="label">기간</span> 2026.10.14(수)~10.16(금)</div>
             <div><span class="label">인원</span> 21명 (학생17+인솔4·2인실기준)</div>
             <div><span class="label">출발</span> 함백중(정선 신동)</div>
         </div>
+        <div class="print-table-wrap">
         <table class="tm-table">
             <thead><tr><th class="tm-col-date">일자</th><th class="tm-col-desc">상세 일정</th><th class="tm-col-meal">식사</th></tr></thead>
             <tbody>
@@ -538,13 +547,15 @@
                 </tr>
             </tbody>
         </table>
+        </div>
         <div class="print-contacts">
             <span><span class="pc-role">대표</span>이재명 010-9443-7881</span>
             <span><span class="pc-role">이사</span>조혁 010-4249-4026</span>
             <span><span class="pc-role">인솔</span>안철중 010-4530-3890</span>
         </div>
+        <div class="print-disclaimer">※ 상기 일정은 현지 사정에 의하여 변동될 수 있습니다.</div>
         <div class="print-footer-area">
-            <div>※ 상기 일정은 함백중학교 요청 일정을 반영하였습니다. [TOURMAKER]</div>
+            <div>함백중학교 요청 일정 초안 반영 · [TOURMAKER]</div>
             <div>인쇄일: <span id="print-date"></span></div>
         </div>
     </div>
