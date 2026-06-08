@@ -92,51 +92,57 @@
 
         @media screen { #print-area { display: none !important; } }
         @media print {
-            @page { size: A4 portrait; margin: 5mm 6mm; }
+            @page { size: A4 portrait; margin: 14mm 16mm; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             html, body { background: white !important; color: black !important; height: auto !important; overflow: visible !important; }
             header, footer, section:not(#print-area), .no-print, #toast, #custom-confirm { display: none !important; }
             main, body { padding: 0 !important; margin: 0 !important; width: 100% !important; background: white !important; }
             #print-area {
-                display: flex !important; flex-direction: column;
-                width: 100%; min-height: 286mm; max-height: 286mm;
+                display: block !important; width: 100%;
                 box-sizing: border-box;
                 page-break-after: avoid; page-break-inside: avoid;
             }
-            .print-header-top { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 5px; margin-bottom: 6px; flex-shrink: 0; }
-            .print-header-top img { height: 30px; }
-            .print-doc-no { font-size: 9.5px; color: #555; }
-            .print-title { text-align: center; font-size: 17px; font-weight: bold; margin-bottom: 6px; line-height: 1.35; flex-shrink: 0; }
-            .print-subtitle { text-align: center; font-size: 10px; color: #64748b; margin: -2px 0 6px 0; flex-shrink: 0; }
-            .print-overview { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; background-color: #f8fafc !important; border: 1px solid #94a3b8 !important; border-radius: 4px; padding: 7px 12px; margin-bottom: 7px; font-size: 10.5px; flex-shrink: 0; }
+            .print-header-top { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 6px; margin-bottom: 8px; }
+            .print-header-top img { height: 28px; }
+            .print-doc-no { font-size: 9px; color: #555; }
+            .print-title { text-align: center; font-size: 16px; font-weight: bold; margin-bottom: 4px; line-height: 1.4; }
+            .print-subtitle { text-align: center; font-size: 9.5px; color: #64748b; margin: 0 0 8px 0; }
+            .print-overview { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; background-color: #f8fafc !important; border: 1px solid #94a3b8 !important; border-radius: 4px; padding: 8px 12px; margin-bottom: 10px; font-size: 10px; }
             .print-overview .label { font-weight: bold; color: #004098; margin-right: 4px; }
-            .print-table-wrap { flex: 1; display: flex; min-height: 0; margin-bottom: 6px; }
-            .tm-table { width: 100%; height: 100%; border-collapse: collapse; font-size: 10px; table-layout: fixed; border: 1.5px solid #1e293b !important; }
+            .print-table-wrap { margin-bottom: 10px; }
+            .tm-table { width: 100%; border-collapse: collapse; font-size: 9.5px; table-layout: fixed; border: 1.5px solid #1e293b !important; }
             .tm-table thead { display: table-header-group; }
-            .tm-table th { border: 1px solid #1e293b !important; background-color: #f8fafc !important; font-weight: bold; text-align: center; padding: 6px 4px !important; font-size: 10.5px; }
-            .tm-table td { border: 1px solid #1e293b !important; padding: 8px 7px !important; vertical-align: top; word-break: keep-all; line-height: 1.35; font-size: 10px; }
-            .tm-table tbody { height: 100%; }
-            .tm-table tbody tr { height: 33.33%; page-break-inside: avoid; break-inside: avoid; }
-            .tm-col-date { width: 13%; text-align: center; font-weight: 700; background-color: #f8fafc !important; vertical-align: middle; font-size: 9.5px; line-height: 1.4; }
-            .tm-col-desc { width: 70%; }
+            .tm-table th { border: 1px solid #1e293b !important; background-color: #f8fafc !important; font-weight: bold; text-align: center; padding: 7px 5px !important; font-size: 10px; }
+            .tm-table td { border: 1px solid #1e293b !important; padding: 9px 8px !important; vertical-align: top; word-break: keep-all; line-height: 1.4; font-size: 9.5px; }
+            .tm-table tbody tr { page-break-inside: avoid; break-inside: avoid; }
+            .tm-col-date { width: 12%; text-align: center; font-weight: 700; background-color: #f8fafc !important; vertical-align: middle; font-size: 9px; line-height: 1.45; }
+            .tm-col-desc { width: 71%; }
             .tm-col-meal { width: 17%; text-align: center; vertical-align: middle; }
             .tm-day-divider td { border-top: 1.5px solid #1e293b !important; }
-            .tm-time-flow { font-size: 10px !important; margin-bottom: 4px !important; font-weight: bold; }
+            .tm-time-flow { font-size: 9.5px !important; margin-bottom: 5px !important; font-weight: bold; }
             .tm-time-tag { color: #004098; margin-right: 4px; }
             .tm-highlight { font-weight: 700; color: #000; }
             .tm-desc-list { list-style: none; margin: 3px 0 !important; padding-left: 4px; }
-            .tm-desc-list li { position: relative; padding-left: 11px; margin-bottom: 3px !important; line-height: 1.35; font-size: 10px; }
-            .tm-desc-list li::before { content: '■'; font-size: 7px; position: absolute; left: 0; top: 3px; color: #004098; }
-            .tm-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 5px 0 3px 0; }
-            .tm-hotel-info { font-size: 9.5px !important; font-weight: bold; }
-            .tm-meal-wrapper { display: flex; flex-direction: column; gap: 5px; justify-content: center; height: 100%; text-align: left; padding-left: 4px; }
-            .tm-meal-simple { display: flex; align-items: flex-start; font-size: 9.5px !important; line-height: 1.3; }
+            .tm-desc-list li { position: relative; padding-left: 11px; margin-bottom: 3px !important; line-height: 1.4; font-size: 9.5px; }
+            .tm-desc-list li::before { content: '■'; font-size: 6px; position: absolute; left: 0; top: 4px; color: #004098; }
+            .tm-spot-desc { font-size: 8.5px !important; color: #475569; margin: 0 0 5px 11px !important; line-height: 1.35; padding: 0; }
+            .tm-desc-list li.tm-spot-desc::before { content: none; }
+            .tm-day-theme { font-size: 8.5px; color: #004098; font-weight: 600; margin-top: 5px; padding: 4px 6px; background: #eff6ff !important; border-radius: 3px; line-height: 1.35; }
+            .tm-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 6px 0 4px 0; }
+            .tm-hotel-info { font-size: 9px !important; font-weight: bold; }
+            .tm-meal-wrapper { display: flex; flex-direction: column; gap: 5px; justify-content: flex-start; text-align: left; padding-left: 4px; padding-top: 2px; }
+            .tm-meal-simple { display: flex; align-items: flex-start; font-size: 9px !important; line-height: 1.35; }
             .tm-meal-simple strong { color: #004098; margin-right: 4px; width: 16px; flex-shrink: 0; }
-            .print-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; padding: 7px 10px; background: #f8fafc !important; border: 1px solid #cbd5e1 !important; border-radius: 4px; font-size: 10px; flex-shrink: 0; }
+            .print-spots { margin-bottom: 10px; border: 1px solid #cbd5e1 !important; border-radius: 4px; padding: 9px 10px; background: #f8fafc !important; }
+            .print-spots-title { font-size: 10px; font-weight: bold; color: #004098; margin-bottom: 7px; text-align: center; letter-spacing: -0.02em; }
+            .print-spots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px 8px; }
+            .print-spot-item { font-size: 8px; line-height: 1.4; padding: 6px 7px; background: white !important; border: 1px solid #e2e8f0 !important; border-radius: 3px; }
+            .print-spot-item strong { display: block; font-size: 9px; color: #004098; margin-bottom: 3px; }
+            .print-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 18px; padding: 8px 10px; background: #f8fafc !important; border: 1px solid #cbd5e1 !important; border-radius: 4px; font-size: 9.5px; margin-bottom: 8px; }
             .print-contacts span { white-space: nowrap; }
             .print-contacts .pc-role { font-weight: 700; color: #004098; margin-right: 3px; }
-            .print-disclaimer { margin-top: 5px; padding: 6px 10px; background: #fffbeb !important; border: 1px solid #fcd34d !important; border-radius: 4px; font-size: 9.5px; color: #92400e; text-align: center; line-height: 1.4; flex-shrink: 0; }
-            .print-footer-area { margin-top: 5px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 9px; border-top: 1px solid #ccc; padding-top: 5px; color: #555; flex-shrink: 0; }
+            .print-disclaimer { padding: 7px 10px; background: #fffbeb !important; border: 1px solid #fcd34d !important; border-radius: 4px; font-size: 9px; color: #92400e; text-align: center; line-height: 1.45; margin-bottom: 6px; }
+            .print-footer-area { display: flex; justify-content: space-between; align-items: flex-end; font-size: 8.5px; border-top: 1px solid #ccc; padding-top: 6px; color: #555; }
         }
     </style>
 </head>
@@ -199,7 +205,7 @@
                     <div class="bg-amber-50 p-8 rounded-3xl border border-amber-100 shadow-sm hover:-translate-y-1 transition-transform">
                         <div class="text-4xl mb-4">🏛️</div>
                         <h3 class="text-xl font-bold text-amber-900 mb-3">2일차 · 신라 고도 (경주)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">천년 고도 <strong>황리단길</strong> 한옥 거리 자유시간 후 <strong>단체식 중식</strong>, 오후 <strong>경주월드</strong> 여가 체험. 석식 <strong>오리구이</strong> · <strong>라마다 호텔</strong> 1박.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">천년 고도 <strong>황리단길</strong> 한옥 거리 자유시간 후 <strong>한식 중식</strong>, 오후 <strong>경주월드</strong> 여가 체험. 석식 <strong>오리구이</strong> · <strong>라마다 호텔</strong> 1박.</p>
                     </div>
                     <div class="bg-pink-50 p-8 rounded-3xl border border-pink-100 shadow-sm hover:-translate-y-1 transition-transform">
                         <div class="text-4xl mb-4">🏘️</div>
@@ -304,7 +310,7 @@
                             <div class="bg-amber-600 text-white text-xl font-bold w-12 h-12 rounded-xl flex items-center justify-center shrink-0">2일</div>
                             <div>
                                 <h3 class="font-bold text-xl">10.15(목) 부산 → 경주 신라 문화 탐방</h3>
-                                <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조: 호텔 · 중: 단체식(황리단길) · 석: 오리구이 · 1박: 경주 라마다</span>
+                                <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조: 호텔 · 중: 한식(황리단길) · 석: 오리구이 · 1박: 경주 라마다</span>
                             </div>
                         </div>
                         <div class="relative border-l-2 border-slate-300 ml-4 pl-6 space-y-6">
@@ -313,7 +319,7 @@
                             <div class="relative"><div class="timeline-dot bg-pink-500 ring-pink-100"></div>
                                 <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">09:30~11:30 황리단길 자유시간</h4><p class="text-sm text-slate-500 mt-1">신라 고도 한옥 거리 산책 · 대릉원 인근 전통 거리·문화 체험 · 조별 활동</p></div>
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi0oMR93RRVIV7CEzCZOEtURfYwqrM2isbGGDSOh5gW-Wjy7kNrDa8FZih&s=10" alt="경주 황리단길" class="schedule-thumb"></div></div>
-                            <div class="relative"><div class="timeline-dot bg-green-500 ring-green-100"></div><h4 class="font-bold">11:30~12:30 중식 — 단체식 (황리단길 인근)</h4><p class="text-sm text-slate-500 mt-1">단체 식사 · 학교 증빙·정산 편의를 위해 일괄 진행</p></div>
+                            <div class="relative"><div class="timeline-dot bg-green-500 ring-green-100"></div><h4 class="font-bold">11:30~12:30 중식 — 한식 (황리단길 인근)</h4><p class="text-sm text-slate-500 mt-1">경주 전통 한식 · 메뉴는 현지 식당 조율 후 확정</p></div>
                             <div class="relative"><div class="timeline-dot bg-pink-600 ring-pink-100"></div>
                                 <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">13:30~16:30 경주월드</h4><p class="text-sm text-slate-500 mt-1">신라 고도 경주에서의 여가 체험 · 놀이기구 자유이용</p></div>
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrIh5jqUYzqP7r2m_OQ9dUhdSYu9ANItizpQruvdRzuhDj3JXdQ8SNeAg&s=10" alt="경주월드 드라켄" class="schedule-thumb"></div></div>
@@ -338,8 +344,8 @@
                             <div class="relative"><div class="timeline-dot bg-emerald-600 ring-emerald-100"></div>
                                 <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">10:00~12:30 안동 하회마을 관람</h4><p class="text-sm text-slate-500 mt-1">유네스코 세계문화유산 · 조선 시대 전통 마을·탈춤·문화유산 탐방</p></div>
                                 <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSTI2mSeyqjL8vvL3g6DR2JhkRaI8V7sLoLDakTusK0o53o-MY5YcaykD9TtaRS" alt="안동 하회마을" class="schedule-thumb"></div></div>
-                            <div class="relative"><div class="timeline-dot bg-orange-500 ring-orange-100"></div><h4 class="font-bold">13:00~14:00 늦은 중식 — 안동찜닭 (하회마을 인근)</h4><p class="text-sm text-slate-500 mt-1">관람 후 인근 식당에서 식사 · 바로 귀교 동선</p></div>
-                            <div class="relative"><div class="timeline-dot bg-slate-600 ring-slate-100"></div><h4 class="font-bold">14:30 함백중(정선 신동) 방향 출발</h4><p class="text-sm text-slate-500 mt-1">휴게소 1회 정차 · 귀교 시간 맞춤 이동</p></div>
+                            <div class="relative"><div class="timeline-dot bg-orange-500 ring-orange-100"></div><h4 class="font-bold">13:00~14:00 늦은 중식 — 안동찜닭 (하회마을 인근)</h4><p class="text-sm text-slate-500 mt-1">안동 대표 음식 · 마을 관람 후 인근에서 식사</p></div>
+                            <div class="relative"><div class="timeline-dot bg-slate-600 ring-slate-100"></div><h4 class="font-bold">14:30 함백중(정선 신동) 방향 출발</h4><p class="text-sm text-slate-500 mt-1">휴게소 1회 정차 후 귀교</p></div>
                             <div class="relative"><div class="timeline-dot bg-green-600 ring-green-100"></div><h4 class="font-bold">18:00 함백중학교 도착 · 해산</h4></div>
                         </div>
                     </div>
@@ -495,7 +501,7 @@
             <div class="print-doc-no">문서번호: TM-261014-HBMS</div>
         </div>
         <div class="print-title">함백중학교 역사문화 탐방 2박3일 수학여행 예정 일정표</div>
-        <p class="print-subtitle">※ 현재 초안 단계 · 세부 시간·식당은 현지 조율 후 확정</p>
+        <p class="print-subtitle">※ 예정 일정표 · 세부 시간·식당·메뉴는 현지 조율 후 확정</p>
         <div class="print-overview">
             <div><span class="label">기간</span> 2026.10.14(수)~10.16(금)</div>
             <div><span class="label">인원</span> 21명 (학생17+인솔4·2인실기준)</div>
@@ -510,12 +516,16 @@
                     <td class="tm-col-desc">
                         <div class="tm-time-flow"><span class="tm-time-tag">전일</span> 신동 출발 → 부산 이동</div>
                         <ul class="tm-desc-list">
+                            <li>07:30 함백중학교(신동) 출발</li>
                             <li>중식 <span class="tm-highlight">낚지전골</span> (태종대 인근)</li>
                             <li><span class="tm-highlight">태종대</span> 관광 (꼬마열차)</li>
+                            <li class="tm-spot-desc">부산 남끝 절벽과 바다가 어우러진 대표 해양 명소, 다누비 꼬마열차 탑승</li>
                             <li><span class="tm-highlight">송도 해상 케이블카</span></li>
+                            <li class="tm-spot-desc">바다 위를 가로지르는 해상 케이블카로 항구 도시 부산의 풍경 관람</li>
                             <li>석식 <span class="tm-highlight">쿠우쿠우</span> 뷔페</li>
                         </ul>
-                        <hr class="tm-hotel-divider"><div class="tm-hotel-info">HTL: 그린핀베이 호텔</div>
+                        <hr class="tm-hotel-divider"><div class="tm-hotel-info">숙박: 그린핀베이 호텔 (남포동)</div>
+                        <div class="tm-day-theme">▶ 해양·근현대 문화 탐방 — 개항 역사와 바다를 만나는 첫날</div>
                     </td>
                     <td class="tm-col-meal"><div class="tm-meal-wrapper"><div class="tm-meal-simple"><strong>중:</strong> 낚지전골</div><div class="tm-meal-simple"><strong>석:</strong> 쿠우쿠우</div></div></td>
                 </tr>
@@ -524,29 +534,48 @@
                     <td class="tm-col-desc">
                         <div class="tm-time-flow"><span class="tm-time-tag">전일</span> 부산 → 경주 이동</div>
                         <ul class="tm-desc-list">
-                            <li><span class="tm-highlight">황리단길</span> 자유시간</li>
-                            <li>중식 <span class="tm-highlight">단체식</span> (황리단길 인근)</li>
-                            <li><span class="tm-highlight">경주월드</span> 자유이용</li>
+                            <li>07:30 조식 후 체크아웃</li>
+                            <li><span class="tm-highlight">황리단길</span> 자유시간 (09:30~11:30)</li>
+                            <li class="tm-spot-desc">신라 왕릉 대릉원 인근 한옥 거리, 전통 건축과 카페·문화 공간 산책</li>
+                            <li>중식 <span class="tm-highlight">한식</span> (황리단길 인근)</li>
+                            <li><span class="tm-highlight">경주월드</span> (13:30~16:30)</li>
+                            <li class="tm-spot-desc">신라 천년 고도 경주에서의 여가 체험, 드라켄 등 놀이기구 자유이용</li>
                             <li>석식 <span class="tm-highlight">오리구이</span></li>
                         </ul>
-                        <hr class="tm-hotel-divider"><div class="tm-hotel-info">HTL: 경주 라마다 호텔</div>
+                        <hr class="tm-hotel-divider"><div class="tm-hotel-info">숙박: 경주 라마다 호텔</div>
+                        <div class="tm-day-theme">▶ 신라 고도 문화 탐방 — 천년 역사 도시 경주를 걷다</div>
                     </td>
-                    <td class="tm-col-meal"><div class="tm-meal-wrapper"><div class="tm-meal-simple"><strong>조:</strong> 호텔</div><div class="tm-meal-simple"><strong>중:</strong> 단체식</div><div class="tm-meal-simple"><strong>석:</strong> 오리구이</div></div></td>
+                    <td class="tm-col-meal"><div class="tm-meal-wrapper"><div class="tm-meal-simple"><strong>조:</strong> 호텔</div><div class="tm-meal-simple"><strong>중:</strong> 한식</div><div class="tm-meal-simple"><strong>석:</strong> 오리구이</div></div></td>
                 </tr>
                 <tr class="tm-day-divider">
                     <td class="tm-col-date">제3일<br>10/16(금)<br>안동</td>
                     <td class="tm-col-desc">
                         <div class="tm-time-flow"><span class="tm-time-tag">오전</span> 안동 하회마을 → 신동 귀교</div>
                         <ul class="tm-desc-list">
-                            <li><span class="tm-highlight">안동 하회마을</span> 관람</li>
+                            <li>07:30 조식 · 체크아웃</li>
+                            <li><span class="tm-highlight">안동 하회마을</span> 관람 (10:00~12:30)</li>
+                            <li class="tm-spot-desc">유네스코 세계문화유산, 낙동강이 감싼 조선 시대 대표 전통 마을</li>
                             <li>늦은 중식 <span class="tm-highlight">안동찜닭</span> (하회 인근)</li>
+                            <li>14:30 정선 신동 방향 출발</li>
                             <li><span class="tm-highlight">18:00</span> 함백중학교 도착 · 해산</li>
                         </ul>
+                        <div class="tm-day-theme">▶ 유교·전통 문화 탐방 — 살아 있는 역사 마을에서 여정을 마무리</div>
                     </td>
-                    <td class="tm-col-meal"><div class="tm-meal-wrapper"><div class="tm-meal-simple"><strong>조:</strong> 호텔</div><div class="tm-meal-simple"><strong>중:</strong> 늦은찜닭</div></div></td>
+                    <td class="tm-col-meal"><div class="tm-meal-wrapper"><div class="tm-meal-simple"><strong>조:</strong> 호텔</div><div class="tm-meal-simple"><strong>중:</strong> 안동찜닭</div></div></td>
                 </tr>
             </tbody>
         </table>
+        </div>
+        <div class="print-spots">
+            <div class="print-spots-title">주요 방문지 안내</div>
+            <div class="print-spots-grid">
+                <div class="print-spot-item"><strong>태종대</strong>부산 최남단 해양 공원. 기암괴석과 등대, 다누비 꼬마열차로 바다 절경을 관람합니다.</div>
+                <div class="print-spot-item"><strong>송도 해상 케이블카</strong>부산 송도 해수욕장 위 1.2km 해상 케이블카. 바다와 도시 전경을 한눈에 조망합니다.</div>
+                <div class="print-spot-item"><strong>황리단길</strong>경주 대릉원·국립박물관 인근 한옥 거리. 신라 문화와 현대 문화가 어우러진 대표 산책 코스입니다.</div>
+                <div class="print-spot-item"><strong>경주월드</strong>경주 대표 테마파크. 드라켄 롤러코스터 등 다양한 놀이기구를 체험합니다.</div>
+                <div class="print-spot-item"><strong>안동 하회마을</strong>유네스코 등재 전통 마을. 민가·서원·탈춤 등 조선 시대 생활문화를 탐방합니다.</div>
+                <div class="print-spot-item"><strong>여행 컨셉</strong>역사문화 탐방 — 부산(해양·근현대) → 경주(신라) → 안동(유교·전통) 3일 연계 학습 여정</div>
+            </div>
         </div>
         <div class="print-contacts">
             <span><span class="pc-role">대표</span>이재명 010-9443-7881</span>
