@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH9GD9SVR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JLH9GD9SVR');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[함백중] 부산·경주 2박3일 수학여행 - 스마트 가이드</title>
+    <meta name="description" content="함백중학교 부산·경주 2박3일 수학여행 공식 스마트 가이드북">
+    <meta property="og:title" content="[함백중] 🌊🏛️ 부산·경주 수학여행 스마트 가이드북">
+    <meta property="og:description" content="정선 신동 출발 · 21명 · 2026.10.21~23 함백중학교 수학여행 일정 안내">
+    <meta property="og:image" content="https://www.telltrip.com/wp-content/uploads/2025/02/Busan-Korea-tourist-attractions1.jpg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .hero-bg {
+            background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(30, 64, 138, 0.7)),
+                url('https://www.telltrip.com/wp-content/uploads/2025/02/Busan-Korea-tourist-attractions1.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        @media (max-width: 768px){ .hero-bg { background-attachment: scroll; } }
+        #map { height: 360px; width: 100%; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 10; }
+        @media (min-width: 1024px) { #map { height: 600px; } }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        section { scroll-margin-top: 70px; }
+        .timeline-dot {
+            position: absolute; left: -25px; top: 4px; width: 16px; height: 16px;
+            border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px var(--tw-ring-color);
+            background-color: var(--tw-bg-color);
+        }
+        @media (max-width: 1023px) {
+            .timeline-dot { left: -20px; top: 6px; width: 14px; height: 14px; border-width: 2px; }
+        }
+        .map-marker-bubble {
+            background: white; border-radius: 50%; box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border: 2px solid white; display: flex; align-items: center; justify-content: center; opacity: 0;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @media screen { #print-area { display: none !important; } }
+        @media print {
+            @page { size: A4 portrait; margin: 12mm 10mm; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body { background: white !important; color: black !important; }
+            header, footer, section:not(#print-area), .no-print, #toast, #custom-confirm { display: none !important; }
+            main, body { padding: 0 !important; margin: 0 !important; width: 100% !important; background: white !important; }
+            #print-area { display: block !important; width: 100%; }
+            .print-header-top { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 10px; margin-bottom: 15px; }
+            .print-header-top img { height: 35px; }
+            .print-doc-no { font-size: 12px; color: #555; }
+            .print-title { text-align: center; font-size: 22px; font-weight: bold; margin-bottom: 15px; }
+            .print-overview { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; background-color: #f8fafc !important; border: 1px solid #94a3b8 !important; border-radius: 6px; padding: 10px 15px; margin-bottom: 15px; font-size: 13px; }
+            .print-overview .label { font-weight: bold; color: #004098; margin-right: 5px; }
+            .tm-table { width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed; border: 2px solid #1e293b !important; }
+            .tm-table th { border: 1px solid #1e293b !important; background-color: #f8fafc !important; font-weight: bold; text-align: center; padding: 6px !important; }
+            .tm-table td { border: 1px solid #1e293b !important; padding: 6px 8px !important; vertical-align: top; word-break: keep-all; }
+            .tm-col-date { width: 11%; text-align: center; font-weight: 700; background-color: #f8fafc !important; vertical-align: middle; }
+            .tm-col-desc { width: 75%; }
+            .tm-col-meal { width: 14%; text-align: center; vertical-align: middle; }
+            tr { page-break-inside: avoid; }
+            .tm-day-divider td { border-top: 2px solid #1e293b !important; }
+            .tm-time-flow { font-size: 11px !important; margin-bottom: 4px !important; font-weight: bold; }
+            .tm-time-tag { color: #004098; margin-right: 5px; }
+            .tm-highlight { font-weight: 700; color: #000; }
+            .tm-desc-list { list-style: none; margin: 4px 0 !important; padding-left: 5px; }
+            .tm-desc-list li { position: relative; padding-left: 12px; margin-bottom: 3px !important; line-height: 1.3; }
+            .tm-desc-list li::before { content: '■'; font-size: 8px; position: absolute; left: 0; top: 3px; color: #004098; }
+            .tm-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 6px 0 4px 0; }
+            .tm-hotel-info { font-size: 11px !important; font-weight: bold; }
+            .tm-meal-wrapper { display: flex; flex-direction: column; gap: 6px; justify-content: center; height: 100%; text-align: left; padding-left: 5px; }
+            .tm-meal-simple { display: flex; align-items: flex-start; font-size: 11px !important; line-height: 1.2; }
+            .tm-meal-simple strong { color: #004098; margin-right: 4px; width: 16px; flex-shrink: 0; }
+            .print-footer-area { margin-top: 15px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 11px; border-top: 1px solid #ccc; padding-top: 10px; }
+            .print-footer-area .manager { font-weight: bold; border-left: 3px solid #004098; padding-left: 8px; }
+        }
+    </style>
+</head>
+<body class="antialiased pb-20 md:pb-0 relative">
+
+    <header class="bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 no-print">
+        <nav class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3 shrink-0">
+                <a href="http://tourmaker.kr" target="_blank">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="Tourmaker" class="h-8">
+                </a>
+                <span id="d-day-badge" class="bg-blue-600 text-white text-[10px] px-2.5 py-1 rounded-full font-bold shadow-sm animate-pulse">D-Day</span>
+            </div>
+            <div class="flex-1 overflow-x-auto no-scrollbar ml-4 md:ml-8">
+                <div class="flex items-center space-x-1 md:space-x-3 whitespace-nowrap pr-4 text-sm">
+                    <a href="#home" class="px-3 py-2 font-bold text-slate-600 hover:text-blue-600 rounded-lg">홈</a>
+                    <a href="#highlights" class="px-3 py-2 font-bold text-blue-600 rounded-lg">핵심포인트</a>
+                    <a href="#transport" class="px-3 py-2 font-medium text-slate-600 hover:text-blue-600 rounded-lg">이동안내</a>
+                    <a href="#map-section" class="px-3 py-2 font-medium text-slate-600 hover:text-blue-600 rounded-lg">여행동선</a>
+                    <a href="#schedule" class="px-3 py-2 font-bold text-blue-600 rounded-lg">상세일정</a>
+                    <a href="#hotel" class="px-3 py-2 font-medium text-slate-600 hover:text-blue-600 rounded-lg">숙소</a>
+                    <a href="#check" class="px-3 py-2 font-medium text-slate-600 hover:text-blue-600 rounded-lg">준비물</a>
+                    <a href="#contact" class="px-3 py-2 font-bold text-red-600 rounded-lg">비상연락</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <button onclick="window.print()" class="p-2 text-slate-500 hover:text-blue-600" title="A4 일정표 인쇄"><i class="fa-solid fa-print text-lg"></i></button>
+                <button onclick="shareLink()" class="p-2 text-slate-500 hover:text-blue-600" title="공유"><i class="fa-solid fa-share-nodes text-xl"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-bg min-h-[70vh] flex items-center justify-center text-center px-4 relative">
+            <div class="animate-fade-in-up text-white z-10 w-full max-w-5xl">
+                <span class="bg-blue-600/90 px-5 py-2 rounded-full text-sm font-bold mb-6 inline-block border border-white/20">함백중학교 수학여행</span>
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg font-[Nanum Myeongjo]">
+                    푸른 바다 부산,<br><span class="text-amber-300">천년 고도 경주</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-100 font-medium bg-black/40 inline-block px-5 py-2 rounded-xl mt-4 backdrop-blur-sm border border-white/10" id="hero-date">
+                    2026.10.21(수) ~ 10.23(금) · 2박 3일 · 총 21명
+                </p>
+                <div class="mt-8 flex flex-wrap justify-center gap-3 text-sm md:text-base font-bold">
+                    <div class="bg-white/20 px-4 py-3 rounded-xl backdrop-blur-sm">📍 출발: 함백중학교 (정선 신동)</div>
+                    <div class="bg-white/20 px-4 py-3 rounded-xl backdrop-blur-sm">🛏️ 2인실 9실 + 3인실 1실</div>
+                    <div class="bg-white/20 px-4 py-3 rounded-xl backdrop-blur-sm">🚌 1일 부산 → 2·3일 경주</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="highlights" class="py-16 bg-white -mt-10 rounded-t-3xl relative z-20 shadow-[0_-10px_30px_rgba(0,0,0,0.08)]">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="text-center mb-12">
+                    <span class="text-blue-600 font-black tracking-widest text-xs uppercase bg-blue-50 px-3 py-1 rounded-full">3 DAYS THEME</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mt-4">함백중 2박3일 여정의 핵심</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100 shadow-sm hover:-translate-y-1 transition-transform">
+                        <div class="text-4xl mb-4">🌊</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-3">1일차 · 바다와 스릴 (부산)</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">장거리 이동 후 <strong>태종대 꼬마열차</strong>, <strong>송도 해상 케이블카</strong>로 바다를 먼저 만납니다. 석식은 학생 인기 메뉴 <strong>쿠우쿠우 뷔페</strong>, 숙소는 남포동 <strong>그린핀베이 호텔</strong>.</p>
+                    </div>
+                    <div class="bg-amber-50 p-8 rounded-3xl border border-amber-100 shadow-sm hover:-translate-y-1 transition-transform">
+                        <div class="text-4xl mb-4">🏛️</div>
+                        <h3 class="text-xl font-bold text-amber-900 mb-3">2일차 · 역사와 문화 (경주)</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed"><strong>경주국립박물관</strong>에서 학습 후 <strong>대릉원·경리단길</strong> 자유시간, 숙소 인근 <strong>동궁과 월지</strong> 야경까지. 라마다 호텔 기준 시내 밀착 코스. 석식 <strong>오리구이</strong>.</p>
+                    </div>
+                    <div class="bg-pink-50 p-8 rounded-3xl border border-pink-100 shadow-sm hover:-translate-y-1 transition-transform">
+                        <div class="text-4xl mb-4">🎢</div>
+                        <h3 class="text-xl font-bold text-pink-900 mb-3">3일차 · 즐거운 마무리 (경주월드)</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">마지막 날 <strong>경주월드</strong>에서 신나게 놀고, 중식 <strong>돈까스</strong> 후 신동 방향으로 이동. 학교 도착 후 안전하게 해산합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="transport" class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="container mx-auto px-4 max-w-5xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-slate-800">이동 동선 요약</h2>
+                </div>
+                <div class="grid md:grid-cols-4 gap-4 text-center text-sm">
+                    <div class="bg-white p-5 rounded-2xl border shadow-sm">
+                        <p class="font-bold text-blue-600 mb-1">1일차</p>
+                        <p class="text-slate-600">신동 → <strong>부산</strong><br><span class="text-xs text-slate-400">약 4시간</span></p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border shadow-sm">
+                        <p class="font-bold text-amber-600 mb-1">2일차</p>
+                        <p class="text-slate-600">부산 → <strong>경주</strong><br><span class="text-xs text-slate-400">약 1시간</span></p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border shadow-sm">
+                        <p class="font-bold text-pink-600 mb-1">3일차</p>
+                        <p class="text-slate-600">경주 → <strong>신동</strong><br><span class="text-xs text-slate-400">약 3.5~4시간</span></p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border shadow-sm">
+                        <p class="font-bold text-slate-700 mb-1">전 구간</p>
+                        <p class="text-slate-600">전용버스<br><span class="text-xs text-slate-400">동일 차량·기사</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map-section" class="py-16 bg-white border-t border-slate-200">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-slate-800">여행 동선 지도</h2>
+                </div>
+                <div class="flex flex-wrap gap-2 justify-center mb-6">
+                    <button onclick="changeMapAndTab('all')" class="map-tab-btn active px-4 py-2 rounded-full text-sm font-bold border bg-blue-600 text-white border-blue-600 shadow-sm">전체</button>
+                    <button onclick="changeMapAndTab('day1')" class="map-tab-btn px-4 py-2 rounded-full text-sm font-bold border bg-white text-slate-600 border-slate-300">1일차 · 부산</button>
+                    <button onclick="changeMapAndTab('day2')" class="map-tab-btn px-4 py-2 rounded-full text-sm font-bold border bg-white text-slate-600 border-slate-300">2일차 · 경주</button>
+                    <button onclick="changeMapAndTab('day3')" class="map-tab-btn px-4 py-2 rounded-full text-sm font-bold border bg-white text-slate-600 border-slate-300">3일차 · 귀가</button>
+                </div>
+                <div id="map"></div>
+                <p class="text-center text-xs text-slate-400 mt-4">※ 교통·현지 상황에 따라 순서 및 시간이 변동될 수 있습니다.</p>
+            </div>
+        </section>
+
+        <section id="schedule" class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-slate-800">상세 일정표</h2>
+                    <p class="text-sm text-slate-500 mt-2">함백중학교 담당 일정 반영 · 세부 시간은 현지 조율 후 확정</p>
+                </div>
+
+                <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="flex flex-wrap border-b bg-slate-50">
+                        <button onclick="changeMapAndTab('day1')" class="flex-1 min-w-[120px] py-4 font-bold text-sm text-blue-600 border-b-2 border-blue-600">DAY 1 (10/21)</button>
+                        <button onclick="changeMapAndTab('day2')" class="flex-1 min-w-[120px] py-4 font-bold text-sm text-slate-500 hover:text-blue-600">DAY 2 (10/22)</button>
+                        <button onclick="changeMapAndTab('day3')" class="flex-1 min-w-[120px] py-4 font-bold text-sm text-slate-500 hover:text-blue-600">DAY 3 (10/23)</button>
+                    </div>
+
+                    <!-- DAY 1 -->
+                    <div id="day1" class="schedule-content p-6 md:p-8">
+                        <div class="flex items-center gap-4 mb-8 border-b pb-4">
+                            <div class="bg-blue-600 text-white text-xl font-bold w-12 h-12 rounded-xl flex items-center justify-center shrink-0">1일</div>
+                            <div>
+                                <h3 class="font-bold text-xl">10.21(수) 신동 출발 → 부산 바다 체험</h3>
+                                <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">중: 낚지전골 · 석: 쿠우쿠우 · 1박: 그린핀베이 호텔</span>
+                            </div>
+                        </div>
+                        <div class="relative border-l-2 border-slate-300 ml-4 pl-6 space-y-6">
+                            <div class="relative"><div class="timeline-dot bg-slate-400 ring-slate-100"></div><h4 class="font-bold">07:30 함백중학교(신동) 출발</h4><p class="text-sm text-slate-500 mt-1">전용버스 탑승 · 출석 및 안전점검</p></div>
+                            <div class="relative"><div class="timeline-dot bg-green-500 ring-green-100"></div><h4 class="font-bold">10:30~10:50 휴게소 휴식</h4></div>
+                            <div class="relative"><div class="timeline-dot bg-orange-500 ring-orange-100"></div><h4 class="font-bold">12:00~13:00 중식 — 낚지전골</h4><p class="text-sm text-slate-500 mt-1">태종대 인근 도착 후 식사</p></div>
+                            <div class="relative"><div class="timeline-dot bg-blue-600 ring-blue-100"></div><h4 class="font-bold">13:00~15:00 태종대 관광 (꼬마열차)</h4><p class="text-sm text-slate-500 mt-1">절벽과 바다가 어우러진 부산 대표 명소 · 다누비 꼬마열차 탑승</p>
+                                <img src="https://www.telltrip.com/wp-content/uploads/2025/02/Busan-Korea-tourist-attractions1.jpg" alt="태종대" class="rounded-lg mt-2 max-h-40 w-full object-cover"></div>
+                            <div class="relative"><div class="timeline-dot bg-cyan-500 ring-cyan-100"></div><h4 class="font-bold">15:30~17:00 송도 해상 케이블카</h4><p class="text-sm text-slate-500 mt-1">바다 위를 가로지르는 케이블카 체험 (용궁 구름다리 포함 가능)</p>
+                                <img src="https://busanaircruise.co.kr/images/contents/attraction02.jpg" alt="송도 케이블카" class="rounded-lg mt-2 max-h-40 w-full object-cover"></div>
+                            <div class="relative"><div class="timeline-dot bg-red-500 ring-red-100"></div><h4 class="font-bold">18:00~19:30 석식 — 쿠우쿠우 뷔페</h4><p class="text-sm text-slate-500 mt-1">스시·샐러드 뷔페 (다이닝원 리브랜딩)</p>
+                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyNDA4MjVfMTQ3/MDAxNzI0NTEyMzIwMjY0.1I4JUAb4eWebSWdNt0hB6iZ1L5QzImB61A0fg4_xce4g.Ja9-vILhLeCtw10NrUqAWw0FUVK6Uo2lqh8ibla8724g.JPEG/%EA%B2%BD%EC%84%B1%EB%8C%80_%EC%BF%A0%EC%9A%B0%EC%BF%A0%EC%9A%B0-22.jpg?type=w400" alt="쿠우쿠우" class="rounded-lg mt-2 max-h-40 w-full object-cover"></div>
+                            <div class="relative"><div class="timeline-dot bg-indigo-600 ring-indigo-100"></div><h4 class="font-bold">20:00 그린핀베이 호텔 체크인 · 층별 안전점호</h4><p class="text-sm text-slate-500 mt-1">남포동·국제시장 도보권 · 2인실 9실 + 3인실 1실</p></div>
+                            <div class="relative"><div class="timeline-dot bg-slate-800 ring-slate-200"></div><h4 class="font-bold">21:00~22:00 자유시간 및 취침</h4></div>
+                        </div>
+                    </div>
+
+                    <!-- DAY 2 -->
+                    <div id="day2" class="schedule-content hidden p-6 md:p-8">
+                        <div class="flex items-center gap-4 mb-8 border-b pb-4">
+                            <div class="bg-amber-600 text-white text-xl font-bold w-12 h-12 rounded-xl flex items-center justify-center shrink-0">2일</div>
+                            <div>
+                                <h3 class="font-bold text-xl">10.22(목) 부산 → 경주 역사·문화 탐방</h3>
+                                <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조: 호텔 · 중: 쌈밥정식 · 석: 오리구이 · 1박: 경주 라마다</span>
+                            </div>
+                        </div>
+                        <div class="relative border-l-2 border-slate-300 ml-4 pl-6 space-y-6">
+                            <div class="relative"><div class="timeline-dot bg-slate-400 ring-slate-100"></div><h4 class="font-bold">07:30 조식 후 체크아웃</h4></div>
+                            <div class="relative"><div class="timeline-dot bg-slate-500 ring-slate-100"></div><h4 class="font-bold">08:30 경주 방향 이동 (약 1시간)</h4></div>
+                            <div class="relative"><div class="timeline-dot bg-indigo-600 ring-indigo-100"></div><h4 class="font-bold">09:30~11:00 경주국립박물관</h4><p class="text-sm text-slate-500 mt-1">신라 문화재 전시 관람 · 학습 활동</p></div>
+                            <div class="relative"><div class="timeline-dot bg-green-500 ring-green-100"></div><h4 class="font-bold">11:30~12:30 중식 — 쌈밥정식</h4></div>
+                            <div class="relative"><div class="timeline-dot bg-amber-500 ring-amber-100"></div><h4 class="font-bold">13:00~13:45 대릉원</h4><p class="text-sm text-slate-500 mt-1">신라 왕릉과 천마총이 있는 역사 공원</p></div>
+                            <div class="relative"><div class="timeline-dot bg-pink-500 ring-pink-100"></div><h4 class="font-bold">14:00~16:00 경리단길 자유시간</h4><p class="text-sm text-slate-500 mt-1">경주 시내 거리 산책 · 간식·기념품 · 조별 활동 (여유 있게 운영)</p>
+                                <img src="https://media.triple.guide/triple-cms/c_limit%2Cf_auto%2Ch_1024%2Cw_1024/245e13ad-277a-4902-bfcd-84b577d841f4.jpeg" alt="경주 시내" class="rounded-lg mt-2 max-h-40 w-full object-cover"></div>
+                            <div class="relative"><div class="timeline-dot bg-indigo-500 ring-indigo-100"></div><h4 class="font-bold">16:30~17:30 동궁과 월지</h4><p class="text-sm text-slate-500 mt-1">라마다 호텔·시내권 인근 · 신라 왕궁 연못 야경 산책 (불국사 대체, 이동 효율 우선)</p>
+                                <img src="https://www.gyeongju.go.kr/portal/resources/images/contents/cont_0103_img01.jpg" alt="동궁과 월지" class="rounded-lg mt-2 max-h-40 w-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800'"></div>
+                            <div class="relative"><div class="timeline-dot bg-red-500 ring-red-100"></div><h4 class="font-bold">18:30 석식 — 오리구이</h4></div>
+                            <div class="relative"><div class="timeline-dot bg-blue-600 ring-blue-100"></div><h4 class="font-bold">19:30 경주 라마다 호텔 체크인</h4></div>
+                            <div class="relative"><div class="timeline-dot bg-slate-800 ring-slate-200"></div><h4 class="font-bold">20:30 취침 준비</h4></div>
+                        </div>
+                    </div>
+
+                    <!-- DAY 3 -->
+                    <div id="day3" class="schedule-content hidden p-6 md:p-8">
+                        <div class="flex items-center gap-4 mb-8 border-b pb-4">
+                            <div class="bg-pink-600 text-white text-xl font-bold w-12 h-12 rounded-xl flex items-center justify-center shrink-0">3일</div>
+                            <div>
+                                <h3 class="font-bold text-xl">10.23(금) 경주월드 → 신동 귀가</h3>
+                                <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조: 호텔 · 중: 돈까스 · 석: 불포함</span>
+                            </div>
+                        </div>
+                        <div class="relative border-l-2 border-slate-300 ml-4 pl-6 space-y-6">
+                            <div class="relative"><div class="timeline-dot bg-slate-400 ring-slate-100"></div><h4 class="font-bold">07:30 조식 · 체크아웃 · 짐 적재</h4></div>
+                            <div class="relative"><div class="timeline-dot bg-pink-600 ring-pink-100"></div><h4 class="font-bold">08:30~11:30 경주월드</h4><p class="text-sm text-slate-500 mt-1">놀이기구 자유이용 · 단체 패키지 입장</p>
+                                <img src="https://www.gyeongjuworld.com/assets/images/main/visual01.jpg" alt="경주월드" class="rounded-lg mt-2 max-h-40 w-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0cbc0b0d4c0?w=800'"></div>
+                            <div class="relative"><div class="timeline-dot bg-orange-500 ring-orange-100"></div><h4 class="font-bold">12:00~13:00 중식 — 돈까스</h4></div>
+                            <div class="relative"><div class="timeline-dot bg-slate-600 ring-slate-100"></div><h4 class="font-bold">13:30 함백중 방향 출발</h4><p class="text-sm text-slate-500 mt-1">휴게소 1~2회 정차</p></div>
+                            <div class="relative"><div class="timeline-dot bg-green-600 ring-green-100"></div><h4 class="font-bold">18:00~18:30 함백중학교 도착 · 해산</h4></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hotel" class="py-16 bg-white border-t border-slate-200">
+            <div class="container mx-auto px-4 max-w-5xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-slate-800">숙박 안내 (2박)</h2>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100">
+                        <span class="text-xs font-bold bg-blue-200 text-blue-900 px-2 py-1 rounded">1박차 · 10/21(수)</span>
+                        <h3 class="text-2xl font-bold mt-3 mb-2">그린핀베이 호텔</h3>
+                        <img src="https://yaimg.yanolja.com/v5/2022/08/26/14/6308d56cd048e4.49482703.jpg" alt="그린핀베이 호텔" class="rounded-xl w-full h-48 object-cover my-4">
+                        <ul class="text-sm text-slate-600 space-y-2">
+                            <li>✅ 남포동·국제시장·자갈치 <strong>도보 이동</strong></li>
+                            <li>✅ <strong>2인실 9실 + 3인실 1실</strong> (총 21명)</li>
+                            <li>✅ 1일차 부산 일정 후 바로 체크인 가능</li>
+                        </ul>
+                    </div>
+                    <div class="bg-amber-50 p-8 rounded-3xl border border-amber-100">
+                        <span class="text-xs font-bold bg-amber-200 text-amber-900 px-2 py-1 rounded">2박차 · 10/22(목)</span>
+                        <h3 class="text-2xl font-bold mt-3 mb-2">경주 라마다 호텔</h3>
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800" alt="경주 라마다" class="rounded-xl w-full h-48 object-cover my-4">
+                        <ul class="text-sm text-slate-600 space-y-2">
+                            <li>✅ 박물관·대릉원·경리단길·동궁과 월지 <strong>도보·단거리</strong> 이동</li>
+                            <li>✅ 조식 뷔페 포함</li>
+                            <li>✅ 3일차 경주월드 이동 편리 (불국사 왕복 40분+ 절감)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="check" class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="container mx-auto px-4 max-w-5xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-slate-800">준비물 체크리스트</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-3xl border shadow-sm">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-xl"><i class="fa-solid fa-check-double text-blue-600 mr-2"></i>필수 준비물</h3>
+                            <button onclick="promptResetChecklist()" class="text-xs text-slate-400 hover:text-red-500 underline">초기화</button>
+                        </div>
+                        <div id="checklist-container" class="space-y-3"></div>
+                    </div>
+                    <div class="bg-yellow-50 p-8 rounded-3xl border border-yellow-200 flex flex-col">
+                        <h3 class="font-bold text-xl mb-6 text-yellow-800"><i class="fa-solid fa-pen-clip mr-2"></i>나만의 여행 메모</h3>
+                        <textarea id="travel-memo" class="flex-1 w-full min-h-[250px] bg-white p-5 rounded-2xl border border-yellow-300 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="경주월드에서 타고 싶은 놀이기구, 친구들과 약속 등을 적어보세요."></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 bg-red-50 border-t border-red-100">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-slate-800">안전 지원망 & 여행 정보</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6 mb-10">
+                    <div class="bg-white rounded-3xl p-8 shadow-md border border-red-100 md:col-span-2">
+                        <h3 class="text-xl font-bold text-red-800 mb-4"><i class="fa-solid fa-mobile-screen mr-2"></i> T-safe24</h3>
+                        <p class="text-slate-600 text-sm mb-6">긴급 상황 시 인근 응급시설 확인·위치 공유를 지원하는 투어메이커 안전 시스템입니다.</p>
+                        <a href="https://indadady.github.io/T-safe24" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-sm">
+                            T-safe24 바로가기 <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="bg-slate-800 text-white p-8 rounded-3xl shadow-md">
+                        <h4 class="font-bold text-xl mb-6">비상 연락망</h4>
+                        <div class="bg-white/10 p-4 rounded-xl mb-3">
+                            <p class="text-xs text-slate-300">투어메이커 대표</p>
+                            <p class="text-lg font-bold">이재명 010-9443-7881</p>
+                        </div>
+                        <div class="bg-white/10 p-4 rounded-xl mb-3">
+                            <p class="text-xs text-slate-300">투어메이커 조혁 이사</p>
+                            <p class="text-lg font-bold">010-4249-4026</p>
+                        </div>
+                        <div class="bg-white/10 p-4 rounded-xl">
+                            <p class="text-xs text-slate-300">학교 인솔 교사</p>
+                            <p class="text-base font-bold">담당 선생님 (확정 후 기재)</p>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-4">경찰 112 · 응급 119</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl p-6 border shadow-sm">
+                    <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+                        <h3 class="font-bold text-lg"><i class="fa-solid fa-cloud-sun text-yellow-500 mr-2"></i> 실시간 일주일 날씨</h3>
+                        <span class="text-[10px] text-slate-400 bg-slate-50 px-2 py-1 rounded border">Open-Meteo API · 자동 갱신</span>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-xs font-bold text-blue-600 mb-2"><i class="fa-solid fa-location-dot mr-1"></i>부산 (1일차)</p>
+                        <div class="relative group">
+                            <button onclick="document.getElementById('weather-busan').scrollBy({left:-150,behavior:'smooth'})" class="absolute -left-2 top-1/2 -translate-y-1/2 bg-white shadow rounded-full w-7 h-7 hidden md:flex items-center justify-center text-slate-500 hover:text-blue-600 z-10 border"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                            <div id="weather-busan" class="flex overflow-x-auto no-scrollbar gap-2 bg-slate-50 p-3 rounded-xl border scroll-smooth">
+                                <p class="text-xs text-slate-400 p-2">불러오는 중...</p>
+                            </div>
+                            <button onclick="document.getElementById('weather-busan').scrollBy({left:150,behavior:'smooth'})" class="absolute -right-2 top-1/2 -translate-y-1/2 bg-white shadow rounded-full w-7 h-7 hidden md:flex items-center justify-center text-slate-500 hover:text-blue-600 z-10 border"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-amber-600 mb-2"><i class="fa-solid fa-location-dot mr-1"></i>경주 (2~3일차)</p>
+                        <div class="relative group">
+                            <button onclick="document.getElementById('weather-gyeongju').scrollBy({left:-150,behavior:'smooth'})" class="absolute -left-2 top-1/2 -translate-y-1/2 bg-white shadow rounded-full w-7 h-7 hidden md:flex items-center justify-center text-slate-500 hover:text-blue-600 z-10 border"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                            <div id="weather-gyeongju" class="flex overflow-x-auto no-scrollbar gap-2 bg-slate-50 p-3 rounded-xl border scroll-smooth">
+                                <p class="text-xs text-slate-400 p-2">불러오는 중...</p>
+                            </div>
+                            <button onclick="document.getElementById('weather-gyeongju').scrollBy({left:150,behavior:'smooth'})" class="absolute -right-2 top-1/2 -translate-y-1/2 bg-white shadow rounded-full w-7 h-7 hidden md:flex items-center justify-center text-slate-500 hover:text-blue-600 z-10 border"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mt-4">💡 10월 말 일교차 큼 · 얇은 겉옷·우산 권장</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="esg" class="py-16 bg-emerald-800 text-white">
+            <div class="container mx-auto px-4 max-w-5xl text-center">
+                <h2 class="text-3xl font-bold mb-4">Paperless DX · 스마트 가이드북</h2>
+                <p class="text-emerald-200 text-sm">21명 기준 종이 인쇄물 대비 약 168장 절감</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-100 py-10 text-center no-print border-t">
+        <a href="http://tourmaker.kr" target="_blank" class="inline-flex items-center gap-2 bg-white border rounded-xl px-6 py-3 text-sm font-bold text-slate-700 mb-4">투어메이커 공식 홈페이지</a>
+        <p class="text-xs text-slate-500">[System Powered by TOURMAKER] 함백중학교 부산·경주 2박3일 수학여행</p>
+    </footer>
+
+    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-6 py-3 rounded-full shadow-2xl z-[9999] transition-all duration-300 translate-y-20 opacity-0 no-print pointer-events-none">
+        <i class="fa-solid fa-circle-check text-green-400"></i> <span id="toast-msg"></span>
+    </div>
+
+    <div id="custom-confirm" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/60 backdrop-blur-sm px-4 no-print">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl text-center">
+            <h3 class="text-xl font-bold mb-2">초기화 확인</h3>
+            <p class="text-slate-600 text-sm mb-6">체크리스트를 초기화하시겠습니까?</p>
+            <div class="flex gap-3">
+                <button onclick="closeConfirmModal()" class="flex-1 bg-slate-100 py-3 rounded-xl font-bold">취소</button>
+                <button onclick="executeResetChecklist()" class="flex-1 bg-red-600 text-white py-3 rounded-xl font-bold">초기화</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="print-area">
+        <div class="print-header-top">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="투어메이커">
+            <div class="print-doc-no">문서번호: TM-261021-HBMS</div>
+        </div>
+        <div class="print-title">함백중학교 부산·경주 2박3일 수학여행 확정 일정</div>
+        <div class="print-overview">
+            <div><span class="label">기간</span> 2026.10.21(수)~10.23(금)</div>
+            <div><span class="label">인원</span> 21명 (2인9실+3인1실)</div>
+            <div><span class="label">출발</span> 함백중(정선 신동)</div>
+        </div>
+        <table class="tm-table">
+            <thead><tr><th class="tm-col-date">일자</th><th class="tm-col-desc">상세 일정</th><th class="tm-col-meal">식사</th></tr></thead>
+            <tbody>
+                <tr class="tm-day-divider">
+                    <td class="tm-col-date">제1일<br>10/21(수)<br>부산</td>
+                    <td class="tm-col-desc">
+                        <div class="tm-time-flow"><span class="tm-time-tag">전일</span> 신동 출발 → 부산 이동</div>
+                        <ul class="tm-desc-list">
+                            <li>중식 <span class="tm-highlight">낚지전골</span> (태종대 인근)</li>
+                            <li><span class="tm-highlight">태종대</span> 관광 (꼬마열차)</li>
+                            <li><span class="tm-highlight">송도 해상 케이블카</span></li>
+                            <li>석식 <span class="tm-highlight">쿠우쿠우</span> 뷔페</li>
+                        </ul>
+                        <hr class="tm-hotel-divider"><div class="tm-hotel-info">HTL: 그린핀베이 호텔</div>
+                    </td>
+                    <td class="tm-col-meal"><div class="tm-meal-wrapper"><div class="tm-meal-simple"><strong>중:</strong> 낚지전골</div><div class="tm-meal-simple"><strong>석:</strong> 쿠우쿠우</div></div></td>
+                </tr>
+                <tr class="tm-day-divider">
+                    <td class="tm-col-date">제2일<br>10/22(목)<br>경주</td>
+                    <td class="tm-col-desc">
+                        <div class="tm-time-flow"><span class="tm-time-tag">전일</span> 부산 → 경주 이동</div>
+                        <ul class="tm-desc-list">
+                            <li><span class="tm-highlight">경주국립박물관</span></li>
+                            <li><span class="tm-highlight">대릉원</span> → <span class="tm-highlight">경리단길</span> (자유시간)</li>
+                            <li><span class="tm-highlight">동궁과 월지</span> (라마다 호텔 인근)</li>
+                            <li>석식 <span class="tm-highlight">오리구이</span></li>
+                        </ul>
+                        <hr class="tm-hotel-divider"><div class="tm-hotel-info">HTL: 경주 라마다 호텔</div>
+                    </td>
+                    <td class="tm-col-meal"><div class="tm-meal-wrapper"><div class="tm-meal-simple"><strong>조:</strong> 호텔</div><div class="tm-meal-simple"><strong>중:</strong> 쌈밥정식</div><div class="tm-meal-simple"><strong>석:</strong> 오리구이</div></div></td>
+                </tr>
+                <tr class="tm-day-divider">
+                    <td class="tm-col-date">제3일<br>10/23(금)<br>귀가</td>
+                    <td class="tm-col-desc">
+                        <div class="tm-time-flow"><span class="tm-time-tag">오전</span> 경주월드 → 신동</div>
+                        <ul class="tm-desc-list">
+                            <li><span class="tm-highlight">경주월드</span> 자유이용</li>
+                            <li>중식 <span class="tm-highlight">돈까스</span> 후 출발</li>
+                            <li>함백중학교 도착 · 해산</li>
+                        </ul>
+                    </td>
+                    <td class="tm-col-meal"><div class="tm-meal-wrapper"><div class="tm-meal-simple"><strong>조:</strong> 호텔</div><div class="tm-meal-simple"><strong>중:</strong> 돈까스</div></div></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="print-footer-area">
+            <div>※ 상기 일정은 함백중학교 요청 일정을 반영하였습니다.</div>
+            <div class="manager">투어메이커 이재명 (010-9443-7881) · 조혁 이사 (010-4249-4026)</div>
+        </div>
+    </div>
+
+    <script>
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            t.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => t.classList.add('translate-y-20', 'opacity-0'), 3000);
+        }
+        function updateDday() {
+            const start = new Date('2026-10-21T00:00:00');
+            const end = new Date('2026-10-23T23:59:59');
+            const today = new Date(); today.setHours(0,0,0,0);
+            const diff = Math.ceil((start - today) / 86400000);
+            const badge = document.getElementById('d-day-badge');
+            if (diff > 0) { badge.className = 'bg-blue-600 text-white text-[10px] px-2.5 py-1 rounded-full font-bold animate-pulse'; badge.innerText = `D-${diff}`; }
+            else if (today <= end) { badge.className = 'bg-red-600 text-white text-[10px] px-2.5 py-1 rounded-full font-bold animate-pulse'; badge.innerText = `📍 ${Math.abs(diff)+1}일차`; }
+            else { badge.className = 'bg-slate-500 text-white text-[10px] px-2.5 py-1 rounded-full font-bold'; badge.innerText = '🏁 종료'; }
+        }
+        updateDday();
+
+        const CHECK_KEY = 'hambak_ms_checklist_v2';
+        const CHECK_ITEMS = ['학생증·신분확인용','편한 운동화','여벌 속옷·양말','멀미약·개인약','양치·세면용품','보조배터리','얇은 겉옷','접이식 우산','물·간식','적정 용돈'];
+        function renderChecklist() {
+            const c = document.getElementById('checklist-container');
+            const saved = JSON.parse(localStorage.getItem(CHECK_KEY) || '{}');
+            c.innerHTML = CHECK_ITEMS.map((label, i) => {
+                const id = 'chk_' + i;
+                return `<label class="flex items-center gap-3 bg-white border rounded-xl px-4 py-3 cursor-pointer hover:bg-blue-50 shadow-sm"><input type="checkbox" id="${id}" ${saved[id]?'checked':''} class="h-5 w-5 text-blue-600 rounded"><span class="text-sm font-medium">${label}</span></label>`;
+            }).join('');
+            c.querySelectorAll('input').forEach(cb => cb.addEventListener('change', () => {
+                const s = JSON.parse(localStorage.getItem(CHECK_KEY) || '{}'); s[cb.id] = cb.checked; localStorage.setItem(CHECK_KEY, JSON.stringify(s));
+            }));
+        }
+        function promptResetChecklist() { document.getElementById('custom-confirm').classList.replace('hidden','flex'); }
+        function closeConfirmModal() { document.getElementById('custom-confirm').classList.replace('flex','hidden'); }
+        function executeResetChecklist() { localStorage.removeItem(CHECK_KEY); renderChecklist(); closeConfirmModal(); showToast('초기화되었습니다.'); }
+        renderChecklist();
+        (function(){ const m = document.getElementById('travel-memo'); const K = 'hambak_ms_memo_v2'; m.value = localStorage.getItem(K)||''; m.addEventListener('input', () => localStorage.setItem(K, m.value)); })();
+
+        function shareLink() { const url = window.location.href; if (navigator.share) navigator.share({title:'함백중 가이드북',url}).catch(()=>{}); else navigator.clipboard.writeText(url).then(()=>showToast('링크 복사됨')); }
+
+        function weatherIcon(wCode) {
+            if (wCode === 0) return 'fa-sun text-orange-400';
+            if (wCode <= 3) return 'fa-cloud-sun text-yellow-400';
+            if (wCode <= 67) return 'fa-cloud-rain text-blue-400';
+            if (wCode <= 77) return 'fa-snowflake text-slate-300';
+            return 'fa-cloud-showers-heavy text-blue-500';
+        }
+
+        function renderWeatherCards(containerId, daily, tripDates) {
+            const days = ['일','월','화','수','목','금','토'];
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(daily.time[i]);
+                const dateStr = `${date.getMonth()+1}/${date.getDate()}(${days[date.getDay()]})`;
+                const isTrip = tripDates && tripDates.includes(daily.time[i]);
+                const maxT = Math.round(daily.temperature_2m_max[i]);
+                const minT = Math.round(daily.temperature_2m_min[i]);
+                const wCode = daily.weathercode[i];
+                container.innerHTML += `
+                    <div class="flex flex-col items-center p-2 rounded-lg border min-w-[68px] shrink-0 shadow-sm ${isTrip ? 'bg-blue-50 border-blue-200 ring-1 ring-blue-200' : 'bg-white border-slate-100'}">
+                        ${isTrip ? '<span class="text-[8px] font-black text-blue-600 mb-0.5">여행일</span>' : '<span class="text-[8px] text-transparent mb-0.5">.</span>'}
+                        <span class="text-[9px] text-slate-400 mb-1">${dateStr}</span>
+                        <i class="fa-solid ${weatherIcon(wCode)} text-lg mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-700">${minT}°<span class="text-slate-300 mx-0.5">/</span>${maxT}°</span>
+                    </div>`;
+            }
+        }
+
+        async function fetchWeather() {
+            try {
+                const [bs, gy] = await Promise.all([
+                    fetch('https://api.open-meteo.com/v1/forecast?latitude=35.1796&longitude=129.0756&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=Asia%2FSeoul&forecast_days=7').then(r=>r.json()),
+                    fetch('https://api.open-meteo.com/v1/forecast?latitude=35.8562&longitude=129.2247&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=Asia%2FSeoul&forecast_days=7').then(r=>r.json())
+                ]);
+                renderWeatherCards('weather-busan', bs.daily, ['2026-10-21']);
+                renderWeatherCards('weather-gyeongju', gy.daily, ['2026-10-22', '2026-10-23']);
+            } catch(e) {
+                document.getElementById('weather-busan').innerHTML = '<p class="text-xs text-red-400 p-2">날씨 정보를 불러오지 못했습니다.</p>';
+                document.getElementById('weather-gyeongju').innerHTML = '<p class="text-xs text-red-400 p-2">날씨 정보를 불러오지 못했습니다.</p>';
+            }
+        }
+        fetchWeather();
+
+        let map, layerGroup;
+        const spots = {
+            school: { c: [37.2265, 128.7845], t: '함백중학교 (신동)', col: '#64748b', i: '🏫' },
+            taejongdae: { c: [35.0517, 129.0856], t: '태종대 (꼬마열차)', col: '#0ea5e9', i: '⛰️' },
+            songdo: { c: [35.0763, 129.0178], t: '송도 해상 케이블카', col: '#8b5cf6', i: '🚠' },
+            kuu: { c: [35.1580, 129.0600], t: '쿠우쿠우 (석식)', col: '#f43f5e', i: '🍣' },
+            greenpia: { c: [35.0985, 129.0305], t: '그린핀베이 호텔', col: '#3b82f6', i: '🏨' },
+            museum: { c: [35.8298, 129.2286], t: '경주국립박물관', col: '#6366f1', i: '🏛️' },
+            daereung: { c: [35.8347, 129.2192], t: '대릉원', col: '#16a34a', i: '🗿' },
+            gyeridan: { c: [35.8370, 129.2150], t: '경리단길', col: '#ec4899', i: '🛍️' },
+            donggung: { c: [35.8343, 129.2266], t: '동궁과 월지', col: '#6366f1', i: '🌙' },
+            ramada: { c: [35.8420, 129.2050], t: '경주 라마다 호텔', col: '#3b82f6', i: '🏨' },
+            gworld: { c: [35.8445, 129.2920], t: '경주월드', col: '#db2777', i: '🎢' }
+        };
+        const routes = {
+            all: { p: ['school','taejongdae','songdo','kuu','greenpia','museum','daereung','gyeridan','donggung','ramada','gworld','school'],
+                l: [
+                    { pts: [spots.school.c, spots.taejongdae.c, spots.songdo.c, spots.kuu.c, spots.greenpia.c], c: '#3b82f6' },
+                    { pts: [spots.greenpia.c, spots.museum.c, spots.daereung.c, spots.gyeridan.c, spots.donggung.c, spots.ramada.c], c: '#d97706' },
+                    { pts: [spots.ramada.c, spots.gworld.c, spots.school.c], c: '#16a34a' }
+                ] },
+            day1: { p: ['school','taejongdae','songdo','kuu','greenpia'], l: [{ pts: [spots.school.c, spots.taejongdae.c, spots.songdo.c, spots.kuu.c, spots.greenpia.c], c: '#3b82f6' }] },
+            day2: { p: ['greenpia','museum','daereung','gyeridan','donggung','ramada'], l: [{ pts: [spots.greenpia.c, spots.museum.c, spots.daereung.c, spots.gyeridan.c, spots.donggung.c, spots.ramada.c], c: '#d97706' }] },
+            day3: { p: ['ramada','gworld','school'], l: [{ pts: [spots.ramada.c, spots.gworld.c, spots.school.c], c: '#16a34a' }] }
+        };
+
+        function initMap() {
+            if (map || typeof L === 'undefined') return;
+            map = L.map('map', { scrollWheelZoom: false }).setView([35.5, 129.0], 8);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' }).addTo(map);
+            layerGroup = L.layerGroup().addTo(map);
+            changeMapAndTab(window.innerWidth < 1024 ? 'day1' : 'all');
+            setTimeout(() => map.invalidateSize(), 300);
+        }
+
+        function changeMapAndTab(dayId) {
+            if (dayId === 'all') document.querySelectorAll('.schedule-content').forEach(el => el.classList.remove('hidden'));
+            else {
+                document.querySelectorAll('.schedule-content').forEach(el => el.classList.add('hidden'));
+                const t = document.getElementById(dayId); if (t) t.classList.remove('hidden');
+            }
+            document.querySelectorAll('.map-tab-btn').forEach(btn => {
+                const active = btn.getAttribute('onclick').includes(`'${dayId}'`);
+                btn.classList.toggle('bg-blue-600', active); btn.classList.toggle('text-white', active);
+                btn.classList.toggle('border-blue-600', active); btn.classList.toggle('shadow-sm', active);
+                btn.classList.toggle('bg-white', !active); btn.classList.toggle('text-slate-600', !active);
+                btn.classList.toggle('border-slate-300', !active);
+            });
+            if (!map || !layerGroup) return;
+            layerGroup.clearLayers();
+            const route = routes[dayId];
+            let bounds = L.latLngBounds();
+            route.l.forEach(line => L.polyline(line.pts, { color: line.c, weight: 4, opacity: 0.8 }).addTo(layerGroup));
+            route.p.forEach((key, idx) => {
+                const s = spots[key];
+                const icon = L.divIcon({ className: 'map-marker-container', html: `<div class="map-marker-bubble" style="background-color:${s.col};width:32px;height:32px;animation:popIn 0.5s forwards ${idx*0.2}s">${s.i}</div>`, iconSize: [32,32], iconAnchor: [16,16] });
+                L.marker(s.c, {icon}).bindTooltip(`<b>${s.t}</b>`).addTo(layerGroup);
+                bounds.extend(s.c);
+            });
+            map.fitBounds(bounds, { padding: [40,40], maxZoom: 10 });
+            setTimeout(() => map.invalidateSize(), 300);
+        }
+        document.addEventListener('DOMContentLoaded', initMap);
+    </script>
+</body>
+</html>
