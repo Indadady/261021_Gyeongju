@@ -90,6 +90,12 @@
             padding: 0.35rem 0.25rem; border-radius: 0.5rem;
         }
 
+        /* 발주처·투어메이커 제작 크레딧 */
+        .tm-credit { max-width: 36rem; margin: 0 auto; padding-top: 1rem; border-top: 1px solid #e2e8f0; }
+        .tm-credit-badge { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.04em; color: #004098; margin-bottom: 0.5rem; }
+        .tm-credit-text { font-size: 0.75rem; color: #64748b; line-height: 1.6; }
+        .tm-credit-text strong { color: #1e293b; font-weight: 700; }
+
         @media screen { #print-area { display: none !important; } }
         @media print {
             @page { size: A4 portrait; margin: 14mm 16mm; }
@@ -142,7 +148,11 @@
             .print-contacts span { white-space: nowrap; }
             .print-contacts .pc-role { font-weight: 700; color: #004098; margin-right: 3px; }
             .print-disclaimer { padding: 7px 10px; background: #fffbeb !important; border: 1px solid #fcd34d !important; border-radius: 4px; font-size: 9px; color: #92400e; text-align: center; line-height: 1.45; margin-bottom: 6px; }
-            .print-footer-area { display: flex; justify-content: space-between; align-items: flex-end; font-size: 8.5px; border-top: 1px solid #ccc; padding-top: 6px; color: #555; }
+            .print-credit { margin-top: 6px; padding: 7px 10px; border-top: 1px solid #cbd5e1; text-align: center; }
+            .print-credit-badge { font-size: 8px; font-weight: 800; color: #004098; letter-spacing: 0.03em; margin-bottom: 3px; }
+            .print-credit-text { font-size: 8.5px; color: #475569; line-height: 1.45; }
+            .print-credit-text strong { color: #1e293b; font-weight: 700; }
+            .print-footer-area { display: flex; justify-content: space-between; align-items: flex-end; font-size: 8px; padding-top: 4px; color: #94a3b8; }
         }
     </style>
 </head>
@@ -470,14 +480,18 @@
         <section id="esg" class="py-16 bg-emerald-800 text-white">
             <div class="container mx-auto px-4 max-w-5xl text-center">
                 <h2 class="text-3xl font-bold mb-4">Paperless DX · 스마트 가이드북</h2>
-                <p class="text-emerald-200 text-sm">21명 기준 종이 인쇄물 대비 약 168장 절감</p>
+                <p class="text-emerald-200 text-sm mb-6">21명 기준 종이 인쇄물 대비 약 168장 절감</p>
+                <p class="text-emerald-100/90 text-xs leading-relaxed max-w-lg mx-auto">본 스마트 가이드북은 <strong class="text-white font-bold">함백중학교</strong>의 기획과<br>투어메이커의 트래블 테크 기술 제휴로 제작되었습니다.</p>
             </div>
         </section>
     </main>
 
-    <footer class="bg-slate-100 py-10 text-center no-print border-t">
-        <a href="http://tourmaker.kr" target="_blank" class="inline-flex items-center gap-2 bg-white border rounded-xl px-6 py-3 text-sm font-bold text-slate-700 mb-4">투어메이커 공식 홈페이지</a>
-        <p class="text-xs text-slate-500">[System Powered by TOURMAKER] 함백중학교 역사문화 탐방 2박3일 수학여행</p>
+    <footer class="bg-slate-100 py-10 text-center no-print border-t px-4">
+        <a href="http://tourmaker.kr" target="_blank" class="inline-flex items-center gap-2 bg-white border rounded-xl px-6 py-3 text-sm font-bold text-slate-700 mb-5">투어메이커 공식 홈페이지</a>
+        <div class="tm-credit">
+            <p class="tm-credit-badge">[System Powered by TOURMAKER]</p>
+            <p class="tm-credit-text">본 스마트 가이드북은 <strong>함백중학교</strong>의 기획과<br>투어메이커의 트래블 테크 기술 제휴로 제작되었습니다.</p>
+        </div>
     </footer>
 
     <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-6 py-3 rounded-full shadow-2xl z-[9999] transition-all duration-300 translate-y-20 opacity-0 no-print pointer-events-none">
@@ -584,8 +598,12 @@
             <span><span class="pc-role">인솔</span>안철중 010-4530-3890</span>
         </div>
         <div class="print-disclaimer">※ 상기 일정은 현지 사정에 의하여 변동될 수 있습니다.</div>
+        <div class="print-credit">
+            <div class="print-credit-badge">[System Powered by TOURMAKER]</div>
+            <div class="print-credit-text">본 스마트 가이드북은 <strong>함백중학교</strong>의 기획과 투어메이커의 트래블 테크 기술 제휴로 제작되었습니다.</div>
+        </div>
         <div class="print-footer-area">
-            <div>함백중학교 요청 일정 초안 반영 · [TOURMAKER]</div>
+            <div>함백중학교 역사문화 탐방 수학여행 · 예정 일정표</div>
             <div>인쇄일: <span id="print-date"></span></div>
         </div>
     </div>
