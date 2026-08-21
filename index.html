@@ -215,7 +215,7 @@
                     <div class="bg-amber-50 p-8 rounded-3xl border border-amber-100 shadow-sm hover:-translate-y-1 transition-transform">
                         <div class="text-4xl mb-4">🏛️</div>
                         <h3 class="text-xl font-bold text-amber-900 mb-3">2일차 · 신라 고도 (경주)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">천년 고도 <strong>황리단길</strong> 관람 후 인근 <strong>쌈밥정식</strong> 중식, 오후 <strong>경주월드</strong> 여가 체험. 석식 <strong>오리구이</strong> · <strong>경주 켄싱턴리조트</strong> 1박.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">오전 <strong>해운대 씨라이프 아쿠아리움</strong> 관람 후 경주 이동. 중식(<strong>쌈밥정식</strong>) 이후 <strong>황리단길</strong> 자유시간·인근 역사문화탐방, 석식 <strong>오리구이</strong> 후 <strong>동궁과 월지(안압지)</strong> 야경 · <strong>경주 켄싱턴리조트</strong> 1박.</p>
                     </div>
                     <div class="bg-pink-50 p-8 rounded-3xl border border-pink-100 shadow-sm hover:-translate-y-1 transition-transform">
                         <div class="text-4xl mb-4">🏘️</div>
@@ -238,7 +238,7 @@
                     </div>
                     <div class="bg-white p-5 rounded-2xl border shadow-sm">
                         <p class="font-bold text-amber-600 mb-1">2일차</p>
-                        <p class="text-slate-600">부산 → <strong>경주</strong><br><span class="text-xs text-slate-400">약 1시간</span></p>
+                        <p class="text-slate-600">해운대 → <strong>경주</strong><br><span class="text-xs text-slate-400">아쿠아리움 후 약 1시간</span></p>
                     </div>
                     <div class="bg-white p-5 rounded-2xl border shadow-sm">
                         <p class="font-bold text-pink-600 mb-1">3일차</p>
@@ -260,7 +260,7 @@
                 <div class="flex flex-wrap gap-2 justify-center mb-6">
                     <button onclick="changeMapAndTab('all')" class="map-tab-btn active px-4 py-2 rounded-full text-sm font-bold border bg-blue-600 text-white border-blue-600 shadow-sm">전체</button>
                     <button onclick="changeMapAndTab('day1')" class="map-tab-btn px-4 py-2 rounded-full text-sm font-bold border bg-white text-slate-600 border-slate-300">1일차 · 부산</button>
-                    <button onclick="changeMapAndTab('day2')" class="map-tab-btn px-4 py-2 rounded-full text-sm font-bold border bg-white text-slate-600 border-slate-300">2일차 · 경주</button>
+                    <button onclick="changeMapAndTab('day2')" class="map-tab-btn px-4 py-2 rounded-full text-sm font-bold border bg-white text-slate-600 border-slate-300">2일차 · 해운대·경주</button>
                     <button onclick="changeMapAndTab('day3')" class="map-tab-btn px-4 py-2 rounded-full text-sm font-bold border bg-white text-slate-600 border-slate-300">3일차 · 안동</button>
                 </div>
                 <div id="map"></div>
@@ -319,23 +319,30 @@
                         <div class="flex items-center gap-4 mb-8 border-b pb-4">
                             <div class="bg-amber-600 text-white text-xl font-bold w-12 h-12 rounded-xl flex items-center justify-center shrink-0">2일</div>
                             <div>
-                                <h3 class="font-bold text-xl">10.15(목) 부산 → 경주 신라 문화 탐방</h3>
+                                <h3 class="font-bold text-xl">10.15(목) 해운대 아쿠아리움 → 경주 신라 문화 탐방</h3>
                                 <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조: 호텔 · 중: 쌈밥정식 · 석: 오리구이 · 1박: 경주 켄싱턴리조트</span>
                             </div>
                         </div>
                         <div class="relative border-l-2 border-slate-300 ml-4 pl-6 space-y-6">
-                            <div class="relative"><div class="timeline-dot bg-slate-400 ring-slate-100"></div><h4 class="font-bold">07:30 조식 후 체크아웃</h4></div>
-                            <div class="relative"><div class="timeline-dot bg-slate-500 ring-slate-100"></div><h4 class="font-bold">08:30 경주 방향 이동 (약 1시간)</h4></div>
+                            <div class="relative"><div class="timeline-dot bg-slate-400 ring-slate-100"></div><h4 class="font-bold">07:30 조식 후 체크아웃</h4><p class="text-sm text-slate-500 mt-1">그리핀베이 호텔 퇴실 · 짐은 전용버스에 적재</p></div>
+                            <div class="relative"><div class="timeline-dot bg-slate-500 ring-slate-100"></div><h4 class="font-bold">08:30 해운대 아쿠아리움 이동</h4><p class="text-sm text-slate-500 mt-1">자갈치·남포동 → 해운대 (약 40분)</p></div>
+                            <div class="relative"><div class="timeline-dot bg-cyan-600 ring-cyan-100"></div>
+                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">10:00~11:30 해운대 씨라이프 아쿠아리움</h4><p class="text-sm text-slate-500 mt-1">평일 10시 개장 · 80m 해저터널·해양생물 탐방 (약 1시간 30분)</p></div>
+                                <img src="assets/images/day2-aquarium.jpg" alt="해운대 씨라이프 아쿠아리움" class="schedule-thumb"></div></div>
+                            <div class="relative"><div class="timeline-dot bg-slate-500 ring-slate-100"></div><h4 class="font-bold">11:30 경주 방향 이동 (약 1시간)</h4><p class="text-sm text-slate-500 mt-1">해운대 → 경주 황리단길 일대</p></div>
+                            <div class="relative"><div class="timeline-dot bg-green-500 ring-green-100"></div><h4 class="font-bold">13:00~14:00 중식 — 쌈밥정식 (황리단길 인근)</h4><p class="text-sm text-slate-500 mt-1">경주 도착 후 인근 식당에서 쌈밥정식</p></div>
                             <div class="relative"><div class="timeline-dot bg-pink-500 ring-pink-100"></div>
-                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">09:30~11:30 황리단길 자유시간</h4><p class="text-sm text-slate-500 mt-1">신라 고도 한옥 거리 산책 · 대릉원 인근 전통 거리·문화 체험 · 조별 활동</p></div>
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi0oMR93RRVIV7CEzCZOEtURfYwqrM2isbGGDSOh5gW-Wjy7kNrDa8FZih&s=10" alt="경주 황리단길" class="schedule-thumb"></div></div>
-                            <div class="relative"><div class="timeline-dot bg-green-500 ring-green-100"></div><h4 class="font-bold">11:30~12:30 중식 — 쌈밥정식 (황리단길 인근)</h4><p class="text-sm text-slate-500 mt-1">황리단길 관람 후 인근 식당에서 쌈밥정식</p></div>
-                            <div class="relative"><div class="timeline-dot bg-pink-600 ring-pink-100"></div>
-                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">13:30~16:30 경주월드</h4><p class="text-sm text-slate-500 mt-1">신라 고도 경주에서의 여가 체험 · 놀이기구 자유이용</p></div>
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrIh5jqUYzqP7r2m_OQ9dUhdSYu9ANItizpQruvdRzuhDj3JXdQ8SNeAg&s=10" alt="경주월드 드라켄" class="schedule-thumb"></div></div>
+                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">14:00~17:00 황리단길 자유시간 · 인근 역사문화탐방</h4><p class="text-sm text-slate-500 mt-1">한옥 거리 산책 · 대릉원·첨성대 일대 도보 탐방 · 조별 활동</p></div>
+                                <img src="assets/images/day2-hwangridan.jpg" alt="경주 황리단길" class="schedule-thumb"></div></div>
+                            <div class="relative"><div class="timeline-dot bg-amber-600 ring-amber-100"></div>
+                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">대릉원·첨성대 일대 (황리단길 인근)</h4><p class="text-sm text-slate-500 mt-1">신라 왕릉과 천문 관측대 등 고도 경주의 대표 유적을 걸어서 둘러봅니다</p></div>
+                                <img src="assets/images/day2-cheomseongdae.jpg" alt="경주 첨성대" class="schedule-thumb"></div></div>
                             <div class="relative"><div class="timeline-dot bg-red-500 ring-red-100"></div><h4 class="font-bold">17:30 석식 — 오리구이</h4></div>
-                            <div class="relative"><div class="timeline-dot bg-blue-600 ring-blue-100"></div><h4 class="font-bold">18:30 경주 켄싱턴리조트 체크인</h4></div>
-                            <div class="relative"><div class="timeline-dot bg-slate-800 ring-slate-200"></div><h4 class="font-bold">20:00 취침 준비</h4></div>
+                            <div class="relative"><div class="timeline-dot bg-indigo-600 ring-indigo-100"></div>
+                                <div class="schedule-media"><div class="schedule-desc"><h4 class="font-bold">18:30~19:30 동궁과 월지(안압지) 야경</h4><p class="text-sm text-slate-500 mt-1">신라 별궁 연못의 야간 조명 · 석식 후 야경 관람</p></div>
+                                <img src="assets/images/day2-anapji.jpg" alt="동궁과 월지 안압지 야경" class="schedule-thumb"></div></div>
+                            <div class="relative"><div class="timeline-dot bg-blue-600 ring-blue-100"></div><h4 class="font-bold">20:00 경주 켄싱턴리조트 체크인 · 숙소 복귀</h4><p class="text-sm text-slate-500 mt-1">보문관광단지 · 층별 안전점호</p></div>
+                            <div class="relative"><div class="timeline-dot bg-slate-800 ring-slate-200"></div><h4 class="font-bold">취침 준비</h4></div>
                         </div>
                     </div>
 
@@ -384,7 +391,7 @@
                         <h3 class="text-2xl font-bold mt-3 mb-2">경주 켄싱턴리조트</h3>
                         <img src="assets/images/hotel-kensington-gyeongju.jpg" alt="경주 켄싱턴리조트" class="rounded-xl w-full h-48 object-cover my-4">
                         <ul class="text-sm text-slate-600 space-y-2">
-                            <li>✅ <strong>보문관광단지·경주월드</strong> 인근 (객실 확보 용이)</li>
+                            <li>✅ <strong>보문관광단지</strong> 인근 · 안압지 야경 후 숙소 복귀</li>
                             <li>✅ 조식 뷔페(애슐리 퀸즈) 이용 가능</li>
                             <li>✅ 3일차 <strong>안동 하회마을</strong> 이동 출발지로 적합</li>
                         </ul>
@@ -408,7 +415,7 @@
                     </div>
                     <div class="bg-yellow-50 p-8 rounded-3xl border border-yellow-200 flex flex-col">
                         <h3 class="font-bold text-xl mb-6 text-yellow-800"><i class="fa-solid fa-pen-clip mr-2"></i>나만의 여행 메모</h3>
-                        <textarea id="travel-memo" class="flex-1 w-full min-h-[250px] bg-white p-5 rounded-2xl border border-yellow-300 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="태종대·황리단길·하회마을에서 궁금한 점, 조별 학습 메모, 룸메이트 약속 등을 적어보세요."></textarea>
+                        <textarea id="travel-memo" class="flex-1 w-full min-h-[250px] bg-white p-5 rounded-2xl border border-yellow-300 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="아쿠아리움·황리단길·안압지·하회마을에서 궁금한 점, 조별 학습 메모, 룸메이트 약속 등을 적어보세요."></textarea>
                     </div>
                 </div>
             </div>
@@ -544,17 +551,20 @@
                     <td class="tm-col-meal"><div class="tm-meal-wrapper"><div class="tm-meal-simple"><strong>중:</strong> 낚지전골</div><div class="tm-meal-simple"><strong>석:</strong> 쿠우쿠우</div></div></td>
                 </tr>
                 <tr class="tm-day-divider">
-                    <td class="tm-col-date">제2일<br>10/15(목)<br>경주</td>
+                    <td class="tm-col-date">제2일<br>10/15(목)<br>부산·경주</td>
                     <td class="tm-col-desc">
-                        <div class="tm-time-flow"><span class="tm-time-tag">전일</span> 부산 → 경주 이동</div>
+                        <div class="tm-time-flow"><span class="tm-time-tag">전일</span> 해운대 아쿠아리움 → 경주 이동</div>
                         <ul class="tm-desc-list">
                             <li>07:30 조식 후 체크아웃</li>
-                            <li><span class="tm-highlight">황리단길</span> 자유시간 (09:30~11:30)</li>
-                            <li class="tm-spot-desc">신라 왕릉 대릉원 인근 한옥 거리, 전통 건축과 카페·문화 공간 산책</li>
+                            <li><span class="tm-highlight">해운대 씨라이프 아쿠아리움</span> (10:00~11:30)</li>
+                            <li class="tm-spot-desc">평일 10시 개장, 80m 해저터널·해양생물 탐방</li>
+                            <li>경주 이동 (약 1시간)</li>
                             <li>중식 <span class="tm-highlight">쌈밥정식</span> (황리단길 인근)</li>
-                            <li><span class="tm-highlight">경주월드</span> (13:30~16:30)</li>
-                            <li class="tm-spot-desc">신라 천년 고도 경주에서의 여가 체험, 드라켄 등 놀이기구 자유이용</li>
+                            <li><span class="tm-highlight">황리단길</span> 자유시간 · 인근 역사문화탐방 (14:00~17:00)</li>
+                            <li class="tm-spot-desc">한옥 거리 산책 후 대릉원·첨성대 일대 신라 유적 도보 탐방</li>
                             <li>석식 <span class="tm-highlight">오리구이</span></li>
+                            <li><span class="tm-highlight">동궁과 월지(안압지)</span> 야경 (18:30~19:30)</li>
+                            <li class="tm-spot-desc">석식 후 신라 별궁 연못 야간 조명 관람, 숙소 복귀</li>
                         </ul>
                         <hr class="tm-hotel-divider"><div class="tm-hotel-info">숙박: 경주 켄싱턴리조트</div>
                         <div class="tm-day-theme">▶ 신라 고도 문화 탐방 — 천년 역사 도시 경주를 걷다</div>
@@ -586,10 +596,10 @@
             <div class="print-spots-grid">
                 <div class="print-spot-item"><strong>태종대</strong>부산 최남단 해양 공원. 기암괴석과 등대, 다누비 꼬마열차로 바다 절경을 관람합니다.</div>
                 <div class="print-spot-item"><strong>송도 해상 케이블카</strong>부산 송도 해수욕장 위 1.2km 해상 케이블카. 바다와 도시 전경을 한눈에 조망합니다.</div>
-                <div class="print-spot-item"><strong>황리단길</strong>경주 대릉원·국립박물관 인근 한옥 거리. 신라 문화와 현대 문화가 어우러진 대표 산책 코스입니다.</div>
-                <div class="print-spot-item"><strong>경주월드</strong>경주 대표 테마파크. 드라켄 롤러코스터 등 다양한 놀이기구를 체험합니다.</div>
+                <div class="print-spot-item"><strong>해운대 아쿠아리움</strong>해운대 씨라이프 아쿠아리움. 해저터널과 해양생물을 탐방하는 2일차 오전 일정입니다.</div>
+                <div class="print-spot-item"><strong>황리단길</strong>경주 대릉원·첨성대 인근 한옥 거리. 자유시간과 신라 유적 도보 탐방을 함께합니다.</div>
+                <div class="print-spot-item"><strong>동궁과 월지(안압지)</strong>신라 별궁 연못. 석식 후 야간 조명으로 고도의 밤 풍경을 관람합니다.</div>
                 <div class="print-spot-item"><strong>안동 하회마을</strong>유네스코 등재 전통 마을. 민가·서원·탈춤 등 조선 시대 생활문화를 탐방합니다.</div>
-                <div class="print-spot-item"><strong>여행 컨셉</strong>역사문화 탐방 — 부산(해양·근현대) → 경주(신라) → 안동(유교·전통) 3일 연계 학습 여정</div>
             </div>
         </div>
         <div class="print-contacts">
@@ -609,6 +619,11 @@
     </div>
 
     <script>
+        const PRINT_FILENAME = '261014_경주_일정표';
+        const PAGE_TITLE = document.title;
+        window.addEventListener('beforeprint', () => { document.title = PRINT_FILENAME; });
+        window.addEventListener('afterprint', () => { document.title = PAGE_TITLE; });
+
         function printSchedule() {
             const d = document.getElementById('print-date');
             if (d) {
@@ -708,20 +723,22 @@
             songdo: { c: [35.0763, 129.0178], t: '송도 해상 케이블카', col: '#8b5cf6', i: '🚠' },
             kuu: { c: [35.1580, 129.0600], t: '쿠우쿠우 (석식)', col: '#f43f5e', i: '🍣' },
             griffinbay: { c: [35.0974, 129.0316], t: '그리핀베이 호텔', col: '#3b82f6', i: '🏨' },
+            aquarium: { c: [35.1588, 129.1604], t: '해운대 아쿠아리움', col: '#06b6d4', i: '🐠' },
             hwangridan: { c: [35.8370, 129.2150], t: '황리단길', col: '#ec4899', i: '🛍️' },
-            gworld: { c: [35.8445, 129.2920], t: '경주월드', col: '#db2777', i: '🎢' },
+            cheomseongdae: { c: [35.8347, 129.2190], t: '첨성대·대릉원', col: '#d97706', i: '🏛️' },
+            anapji: { c: [35.8346, 129.2266], t: '동궁과 월지(안압지)', col: '#6366f1', i: '🌙' },
             kensington: { c: [35.8449, 129.2875], t: '경주 켄싱턴리조트', col: '#3b82f6', i: '🏨' },
             hahoe: { c: [36.5392, 128.5187], t: '안동 하회마을', col: '#059669', i: '🏘️' }
         };
         const routes = {
-            all: { p: ['school','taejongdae','songdo','kuu','griffinbay','hwangridan','gworld','kensington','hahoe','school'],
+            all: { p: ['school','taejongdae','songdo','kuu','griffinbay','aquarium','hwangridan','cheomseongdae','anapji','kensington','hahoe','school'],
                 l: [
                     { pts: [spots.school.c, spots.taejongdae.c, spots.songdo.c, spots.kuu.c, spots.griffinbay.c], c: '#3b82f6' },
-                    { pts: [spots.griffinbay.c, spots.hwangridan.c, spots.gworld.c, spots.kensington.c], c: '#d97706' },
+                    { pts: [spots.griffinbay.c, spots.aquarium.c, spots.hwangridan.c, spots.cheomseongdae.c, spots.anapji.c, spots.kensington.c], c: '#d97706' },
                     { pts: [spots.kensington.c, spots.hahoe.c, spots.school.c], c: '#16a34a' }
                 ] },
             day1: { p: ['school','taejongdae','songdo','kuu','griffinbay'], l: [{ pts: [spots.school.c, spots.taejongdae.c, spots.songdo.c, spots.kuu.c, spots.griffinbay.c], c: '#3b82f6' }] },
-            day2: { p: ['griffinbay','hwangridan','gworld','kensington'], l: [{ pts: [spots.griffinbay.c, spots.hwangridan.c, spots.gworld.c, spots.kensington.c], c: '#d97706' }] },
+            day2: { p: ['griffinbay','aquarium','hwangridan','cheomseongdae','anapji','kensington'], l: [{ pts: [spots.griffinbay.c, spots.aquarium.c, spots.hwangridan.c, spots.cheomseongdae.c, spots.anapji.c, spots.kensington.c], c: '#d97706' }] },
             day3: { p: ['kensington','hahoe','school'], l: [{ pts: [spots.kensington.c, spots.hahoe.c, spots.school.c], c: '#16a34a' }] }
         };
 
